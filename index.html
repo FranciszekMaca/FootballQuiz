@@ -7,105 +7,206 @@
 
 <style>
 *{box-sizing:border-box}
+
+:root{
+ --main:#4cff8b;
+ --dark:#071b0e;
+ --panel:#12371f;
+ --button:#185d36;
+ --text:#fff;
+}
+
 body{
  margin:0;
- font-family:Arial,sans-serif;
- color:white;
- background:linear-gradient(135deg,#031b0d,#08783b,#031b0d);
  min-height:100vh;
+ font-family:Arial,sans-serif;
+ color:var(--text);
+ background:#031b0d;
+ transition:.4s;
+ overflow-x:hidden;
 }
+
+/* TAPETY */
+
+body.wall-grass{
+ background:
+ radial-gradient(circle at 20% 20%,rgba(80,255,120,.15),transparent 25%),
+ linear-gradient(135deg,#021d0c,#08783b,#021d0c);
+}
+
+body.wall-night{
+ background:
+ radial-gradient(circle at 50% 20%,#244b91 0%,transparent 25%),
+ linear-gradient(180deg,#020617,#071b38 55%,#02050b);
+}
+
+body.wall-lava{
+ background:
+ radial-gradient(circle at 50% 110%,#ff3b00 0%,transparent 35%),
+ radial-gradient(circle at 20% 90%,#ff8c00 0%,transparent 20%),
+ linear-gradient(145deg,#160000,#4b0800,#090000);
+}
+
+body.wall-space{
+ background:
+ radial-gradient(circle at 15% 25%,white 0 1px,transparent 2px),
+ radial-gradient(circle at 70% 15%,white 0 1px,transparent 2px),
+ radial-gradient(circle at 35% 70%,white 0 1px,transparent 2px),
+ radial-gradient(circle at 85% 75%,white 0 1px,transparent 2px),
+ radial-gradient(circle at 50% 50%,#44248a 0%,transparent 35%),
+ linear-gradient(135deg,#02000c,#090026,#010006);
+ background-size:170px 170px,230px 230px,190px 190px,250px 250px,100% 100%,100% 100%;
+}
+
+body.wall-black{
+ background:
+ linear-gradient(135deg,#000,#111,#000);
+}
+
+/* KOLORY */
+
+body.color-blue{
+ --main:#42a5ff;
+ --button:#155b91;
+ --panel:#102e48;
+}
+
+body.color-red{
+ --main:#ff5757;
+ --button:#8d2525;
+ --panel:#421717;
+}
+
+body.color-purple{
+ --main:#c875ff;
+ --button:#652d91;
+ --panel:#32174b;
+}
+
+body.color-gold{
+ --main:#ffd34d;
+ --button:#876814;
+ --panel:#423511;
+}
+
+body.color-green{
+ --main:#4cff8b;
+ --button:#185d36;
+ --panel:#12371f;
+}
+
 button{
  border:0;
  cursor:pointer;
  font-family:inherit;
+ transition:.2s;
 }
+
+button:hover{
+ transform:translateY(-2px);
+ filter:brightness(1.12);
+}
+
 .app{
  width:94%;
  max-width:1000px;
  margin:20px auto;
- background:#071b0e;
- border:1px solid #25854b;
+ background:rgba(4,18,9,.91);
+ border:1px solid var(--main);
  border-radius:25px;
  padding:22px;
- box-shadow:0 0 40px #000;
+ box-shadow:0 0 40px rgba(0,0,0,.6);
+ backdrop-filter:blur(6px);
 }
+
 .hidden{display:none!important}
+
 .logo{
  text-align:center;
  font-size:42px;
  font-weight:900;
- color:#4cff8b;
+ color:var(--main);
  margin-bottom:5px;
+ text-shadow:0 0 15px rgba(255,255,255,.08);
 }
+
 .sub{
  text-align:center;
- color:#c8efd5;
+ color:#d2e8da;
 }
+
 .profile{
- background:#123a20;
+ background:var(--panel);
  border-radius:18px;
  padding:15px;
  margin:15px 0;
 }
+
 .profileTop{
  display:flex;
  justify-content:space-between;
  flex-wrap:wrap;
  gap:8px;
 }
+
 .xp{
  height:12px;
- background:#294333;
+ background:#29362d;
  border-radius:20px;
  margin-top:10px;
  overflow:hidden;
 }
+
 #xpBar{
  height:100%;
  width:0%;
- background:#4cff8b;
+ background:var(--main);
+ transition:.4s;
 }
+
 .infoGrid{
  display:grid;
  grid-template-columns:repeat(4,1fr);
  gap:10px;
 }
+
 .info{
- background:#143b21;
+ background:var(--panel);
  border-radius:15px;
  padding:13px;
  text-align:center;
 }
+
 .menu{
  display:grid;
  grid-template-columns:repeat(2,1fr);
  gap:12px;
 }
+
 .menu button{
  padding:20px 10px;
  border-radius:17px;
- background:#176137;
+ background:var(--button);
  color:white;
  font-size:17px;
  font-weight:bold;
 }
-.menu button:hover{
- background:#24934f;
- transform:translateY(-2px);
-}
+
 .gold{
  background:linear-gradient(90deg,#78500b,#d49b18)!important;
 }
+
 .next{
  width:100%;
  padding:16px;
  border-radius:14px;
- background:#4cff8b;
- color:#062511;
+ background:var(--main);
+ color:#06150a;
  font-size:18px;
  font-weight:bold;
  margin-top:12px;
 }
+
 .back{
  width:100%;
  padding:15px;
@@ -115,14 +216,17 @@ button{
  font-weight:bold;
  margin-top:10px;
 }
+
 .pageTitle{
  text-align:center;
  font-size:30px;
 }
+
 .difficulty{
  display:grid;
  gap:12px;
 }
+
 .diff{
  padding:22px;
  border-radius:18px;
@@ -130,21 +234,25 @@ button{
  font-size:20px;
  font-weight:bold;
 }
+
 .easy{background:#168b49}
 .medium{background:#a87612}
 .hard{background:#ad3030}
 .elite{background:#6332ad}
+
 .stats{
  display:grid;
  grid-template-columns:repeat(4,1fr);
  gap:8px;
 }
+
 .stat{
- background:#143a20;
+ background:var(--panel);
  border-radius:13px;
  padding:12px 5px;
  text-align:center;
 }
+
 .progress{
  margin:12px 0;
  height:8px;
@@ -152,16 +260,19 @@ button{
  border-radius:20px;
  overflow:hidden;
 }
+
 #progressBar{
  height:100%;
  width:0;
- background:#4cff8b;
+ background:var(--main);
 }
+
 .timer{
  text-align:center;
  font-size:22px;
  font-weight:bold;
 }
+
 .question{
  text-align:center;
  font-size:27px;
@@ -169,34 +280,39 @@ button{
  margin:20px 0;
  min-height:65px;
 }
+
 .answers{
  display:grid;
  grid-template-columns:1fr 1fr;
  gap:10px;
 }
+
 .answer{
- background:#185d36;
+ background:var(--button);
  color:white;
  padding:17px;
  border-radius:14px;
  font-size:17px;
  font-weight:bold;
 }
-.answer:hover{background:#26894e}
+
 .correct{background:#079b49!important}
 .wrong{background:#c22f2f!important}
+
 .message{
  text-align:center;
  min-height:28px;
  margin:12px;
  font-weight:bold;
 }
+
 .tools{
  display:grid;
  grid-template-columns:1fr 1fr;
  gap:10px;
  margin-top:10px;
 }
+
 .tool{
  padding:13px;
  background:#315940;
@@ -204,6 +320,7 @@ button{
  border-radius:12px;
  font-weight:bold;
 }
+
 .playerImage{
  width:210px;
  height:210px;
@@ -211,66 +328,79 @@ button{
  display:block;
  margin:10px auto;
  border-radius:20px;
- border:4px solid #4cff8b;
+ border:4px solid var(--main);
 }
+
 .result{
  text-align:center;
  font-size:65px;
- color:#4cff8b;
+ color:var(--main);
  font-weight:900;
 }
+
 .card{
- background:#12371f;
+ background:var(--panel);
  border-radius:18px;
  padding:18px;
  margin:10px 0;
 }
+
 .countryGrid{
  display:grid;
  grid-template-columns:repeat(4,1fr);
  gap:10px;
 }
+
 .country{
  padding:15px 5px;
  border-radius:14px;
- background:#174226;
+ background:var(--button);
  color:white;
  font-size:17px;
  font-weight:bold;
 }
+
 .country.locked{opacity:.35}
-.country.done{border:2px solid #4cff8b}
+.country.done{border:2px solid var(--main)}
+
 .shop{
  display:flex;
  justify-content:space-between;
  align-items:center;
- background:#143b21;
+ background:var(--panel);
  padding:15px;
  border-radius:14px;
  margin:8px 0;
  gap:10px;
 }
+
 .buy{
  padding:10px;
  border-radius:10px;
- background:#4cff8b;
+ background:var(--main);
  font-weight:bold;
 }
+
 .achievement{
- background:#143b21;
+ background:var(--panel);
  padding:14px;
  border-radius:14px;
  margin:8px 0;
 }
-.achievement.done{border:2px solid #4cff8b}
+
+.achievement.done{
+ border:2px solid var(--main);
+}
+
 .leader{
  display:flex;
  justify-content:space-between;
- background:#143b21;
+ background:var(--panel);
  padding:13px;
  border-radius:12px;
  margin:7px 0;
 }
+
 .input{
  width:100%;
  padding:14px;
@@ -279,6 +409,7 @@ button{
  margin:8px 0;
  font-size:18px;
 }
+
 .avatar{
  width:100px;
  height:100px;
@@ -287,50 +418,153 @@ button{
  display:flex;
  align-items:center;
  justify-content:center;
- background:#4cff8b;
+ background:var(--main);
  color:#062511;
  font-size:50px;
 }
+
+/* WYGLĄD */
+
+.appearanceGrid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:14px;
+}
+
+.appearanceCard{
+ background:var(--panel);
+ padding:15px;
+ border-radius:18px;
+}
+
+.appearanceCard h3{
+ margin-top:0;
+}
+
+.wallGrid,.colorGrid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:10px;
+}
+
+.wallButton,.colorButton{
+ min-height:100px;
+ border-radius:16px;
+ color:white;
+ font-size:18px;
+ font-weight:bold;
+ border:2px solid transparent;
+}
+
+.wallButton.selected,
+.colorButton.selected{
+ border:3px solid var(--main);
+ box-shadow:0 0 15px var(--main);
+}
+
+.wall-grass-preview{
+ background:linear-gradient(135deg,#021d0c,#08783b);
+}
+
+.wall-night-preview{
+ background:linear-gradient(180deg,#020617,#071b38);
+}
+
+.wall-lava-preview{
+ background:linear-gradient(135deg,#160000,#ff3b00,#4b0800);
+}
+
+.wall-space-preview{
+ background:radial-gradient(circle,#44248a,#02000c);
+}
+
+.wall-black-preview{
+ background:linear-gradient(135deg,#000,#111,#000);
+}
+
+.color-green-preview{background:#4cff8b;color:#062511}
+.color-blue-preview{background:#42a5ff}
+.color-red-preview{background:#ff5757}
+.color-purple-preview{background:#c875ff}
+.color-gold-preview{background:#ffd34d;color:#302400}
+
 @media(max-width:650px){
- .app{margin:5px auto;padding:14px}
- .logo{font-size:32px}
- .infoGrid{grid-template-columns:1fr 1fr}
- .menu{grid-template-columns:1fr}
- .answers{grid-template-columns:1fr}
- .stats{grid-template-columns:1fr 1fr}
- .countryGrid{grid-template-columns:1fr 1fr}
- .tools{grid-template-columns:1fr}
+
+ .app{
+  margin:5px auto;
+  padding:14px;
+ }
+
+ .logo{
+  font-size:32px;
+ }
+
+ .infoGrid{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .menu{
+  grid-template-columns:1fr;
+ }
+
+ .answers{
+  grid-template-columns:1fr;
+ }
+
+ .stats{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .countryGrid{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .tools{
+  grid-template-columns:1fr;
+ }
+
+ .appearanceGrid{
+  grid-template-columns:1fr;
+ }
+
 }
 </style>
 </head>
 
-<body>
+<body class="wall-grass color-green">
 
 <div class="app">
 
 <!-- MENU -->
+
 <section id="menu">
 
 <div class="logo">⚽ FOOTBALL QUIZ</div>
 <p class="sub">🌍 WORLD</p>
 
 <div class="profile">
+
 <div class="profileTop">
 <b>👤 <span id="name">Gracz</span></b>
 <b>⭐ Poziom <span id="level">1</span></b>
 <b>🪙 <span id="coins">50</span></b>
 </div>
+
 <div class="xp">
 <div id="xpBar"></div>
 </div>
+
 <p>XP: <span id="xp">0</span> / <span id="needed">100</span></p>
+
 </div>
 
 <div class="infoGrid">
+
 <div class="info">🏆<br><b id="best">0</b></div>
 <div class="info">🔥<br><b id="bestCombo">0</b></div>
 <div class="info">🎮<br><b id="games">0</b></div>
 <div class="info">🌍<br><b id="world">0%</b></div>
+
 </div>
 
 <br>
@@ -338,19 +572,31 @@ button{
 <div class="menu">
 
 <button onclick="selectMode('classic')">⚽<br>KLASYCZNY</button>
+
 <button onclick="selectMode('players')">👤<br>ZGADNIJ PIŁKARZA</button>
+
 <button onclick="selectMode('clubs')">🏆<br>ZGADNIJ KLUB</button>
+
 <button onclick="selectMode('stadiums')">🏟️<br>ZGADNIJ STADION</button>
+
 <button onclick="selectMode('countries')">🌍<br>REPREZENTACJE</button>
+
 <button onclick="selectMode('stats')">📊<br>STATYSTYKI</button>
 
 <button onclick="openWho()">🧩<br>KIM JESTEM?</button>
+
 <button onclick="openCareer()">📰<br>ZGADNIJ PO KARIERZE</button>
+
 <button onclick="openMatch()">🏟️<br>ZGADNIJ MECZ</button>
+
 <button onclick="openSpeed()">⏱️<br>SPEED QUIZ</button>
+
 <button onclick="openSurvival()">❤️<br>SURVIVAL</button>
+
 <button onclick="openTournament()">🏆<br>TURNIEJ</button>
+
 <button onclick="openTwo()">👥<br>2 GRACZY</button>
+
 <button onclick="openWorld()">🌍<br>FOOTBALL WORLD</button>
 
 <button class="gold" onclick="daily()">📅<br>DAILY CHALLENGE</button>
@@ -358,14 +604,121 @@ button{
 </div>
 
 <button class="next" onclick="openProfile()">👤 PROFIL</button>
+
 <button class="next" onclick="openShop()">🛒 SKLEP</button>
+
 <button class="next" onclick="openAchievements()">🏅 OSIĄGNIĘCIA</button>
+
 <button class="next" onclick="openRanking()">🥇 RANKING</button>
+
+<button class="next" onclick="openAppearance()">🎨 WYGLĄD</button>
+
+</section>
+
+
+<!-- WYGLĄD -->
+
+<section id="appearance" class="hidden">
+
+<div class="logo">🎨 WYGLĄD</div>
+
+<p class="sub">
+Wybierz swój styl Football Quiz
+</p>
+
+<div class="appearanceGrid">
+
+<div class="appearanceCard">
+
+<h3>🖼️ TAPETA</h3>
+
+<div class="wallGrid">
+
+<button class="wallButton wall-grass-preview"
+onclick="setWallpaper('grass',this)">
+⚽<br>BOISKO
+</button>
+
+<button class="wallButton wall-night-preview"
+onclick="setWallpaper('night',this)">
+🏟️<br>STADION NOCĄ
+</button>
+
+<button class="wallButton wall-lava-preview"
+onclick="setWallpaper('lava',this)">
+🌋<br>LAWA
+</button>
+
+<button class="wallButton wall-space-preview"
+onclick="setWallpaper('space',this)">
+🚀<br>KOSMOS
+</button>
+
+<button class="wallButton wall-black-preview"
+onclick="setWallpaper('black',this)">
+🖤<br>CZERŃ
+</button>
+
+</div>
+
+</div>
+
+
+<div class="appearanceCard">
+
+<h3>🎨 KOLOR</h3>
+
+<div class="colorGrid">
+
+<button class="colorButton color-green-preview"
+onclick="setColor('green',this)">
+🟢 ZIELONY
+</button>
+
+<button class="colorButton color-blue-preview"
+onclick="setColor('blue',this)">
+🔵 NIEBIESKI
+</button>
+
+<button class="colorButton color-red-preview"
+onclick="setColor('red',this)">
+🔴 CZERWONY
+</button>
+
+<button class="colorButton color-purple-preview"
+onclick="setColor('purple',this)">
+🟣 FIOLETOWY
+</button>
+
+<button class="colorButton color-gold-preview"
+onclick="setColor('gold',this)">
+🟡 ZŁOTY
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>💡 Wskazówka</h3>
+
+<p>
+Jeśli obecny wygląd jest dla Ciebie zbyt mocny,
+spróbuj <b>🖤 Czerń</b> albo <b>🔵 Stadion nocą</b>.
+</p>
+
+</div>
+
+<button class="back" onclick="menu()">⬅️ WRÓĆ DO MENU</button>
 
 </section>
 
 
 <!-- PROFIL -->
+
 <section id="profile" class="hidden">
 
 <div class="logo">👤 PROFIL</div>
@@ -395,6 +748,7 @@ placeholder="Twój nick">
 
 
 <!-- TRUDNOŚĆ -->
+
 <section id="difficulty" class="hidden">
 
 <div class="logo">🎯 POZIOM TRUDNOŚCI</div>
@@ -427,13 +781,16 @@ placeholder="Twój nick">
 
 
 <!-- GRA -->
+
 <section id="game" class="hidden">
 
 <div class="stats">
+
 <div class="stat">❤️ <b id="lives">3</b></div>
 <div class="stat">🪙 <b id="gameCoins">0</b></div>
 <div class="stat">🔥 <b id="combo">0</b></div>
 <div class="stat">🏆 <b id="score">0</b></div>
+
 </div>
 
 <div class="progress">
@@ -453,17 +810,27 @@ placeholder="Twój nick">
 <div id="message" class="message"></div>
 
 <div class="tools">
-<button class="tool" onclick="fifty()">🎯 50/50 — 3🪙</button>
-<button class="tool" onclick="hint()">💡 PODPOWIEDŹ — 2🪙</button>
+
+<button class="tool" onclick="fifty()">
+🎯 50/50 — 3🪙
+</button>
+
+<button class="tool" onclick="hint()">
+💡 PODPOWIEDŹ — 2🪙
+</button>
+
 </div>
 
 <button id="next" class="next hidden"
-onclick="nextQuestion()">➡️ NASTĘPNE</button>
+onclick="nextQuestion()">
+➡️ NASTĘPNE
+</button>
 
 </section>
 
 
 <!-- WYNIK -->
+
 <section id="result" class="hidden">
 
 <div class="logo">🏆 KONIEC</div>
@@ -471,9 +838,11 @@ onclick="nextQuestion()">➡️ NASTĘPNE</button>
 <div id="finalScore" class="result">0</div>
 
 <div class="card">
+
 <p>⭐ Zdobyte XP: <b id="finalXP">0</b></p>
 <p>🪙 Monety: <b id="finalCoins">0</b></p>
 <p>🔥 Najlepsze combo: <b id="finalCombo">0</b></p>
+
 </div>
 
 <button class="next" onclick="menu()">🏠 MENU</button>
@@ -482,6 +851,7 @@ onclick="nextQuestion()">➡️ NASTĘPNE</button>
 
 
 <!-- WORLD -->
+
 <section id="worldPage" class="hidden">
 
 <div class="logo">🌍 FOOTBALL WORLD</div>
@@ -499,6 +869,7 @@ Odblokowane kraje:
 
 
 <!-- SKLEP -->
+
 <section id="shopPage" class="hidden">
 
 <div class="logo">🛒 SKLEP</div>
@@ -506,18 +877,27 @@ Odblokowane kraje:
 <p class="sub">Masz 🪙 <b id="shopCoins">0</b></p>
 
 <div class="shop">
+
 <div>❤️ Dodatkowe życie<br><small>20 monet</small></div>
+
 <button class="buy" onclick="buy('life')">KUP</button>
+
 </div>
 
 <div class="shop">
+
 <div>⏱️ +3 sekundy<br><small>30 monet</small></div>
+
 <button class="buy" onclick="buy('time')">KUP</button>
+
 </div>
 
 <div class="shop">
+
 <div>🔥 Combo Boost<br><small>50 monet</small></div>
+
 <button class="buy" onclick="buy('boost')">KUP</button>
+
 </div>
 
 <button class="back" onclick="menu()">⬅️ WRÓĆ</button>
@@ -526,6 +906,7 @@ Odblokowane kraje:
 
 
 <!-- OSIĄGNIĘCIA -->
+
 <section id="achievements" class="hidden">
 
 <div class="logo">🏅 OSIĄGNIĘCIA</div>
@@ -538,6 +919,7 @@ Odblokowane kraje:
 
 
 <!-- RANKING -->
+
 <section id="ranking" class="hidden">
 
 <div class="logo">🥇 RANKING</div>
@@ -554,6 +936,7 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 
 
 <!-- KIM JESTEM -->
+
 <section id="who" class="hidden">
 
 <div class="logo">🧩 KIM JESTEM?</div>
@@ -565,12 +948,14 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 <div id="whoMessage" class="message"></div>
 
 <button class="next" onclick="newWho()">🔄 NOWA ZAGADKA</button>
+
 <button class="back" onclick="menu()">⬅️ WRÓĆ</button>
 
 </section>
 
 
 <!-- KARIERA -->
+
 <section id="career" class="hidden">
 
 <div class="logo">📰 ZGADNIJ PO KARIERZE</div>
@@ -582,12 +967,14 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 <div id="careerMessage" class="message"></div>
 
 <button class="next" onclick="newCareer()">🔄 NOWA ZAGADKA</button>
+
 <button class="back" onclick="menu()">⬅️ WRÓĆ</button>
 
 </section>
 
 
 <!-- MECZ -->
+
 <section id="match" class="hidden">
 
 <div class="logo">🏟️ ZGADNIJ MECZ</div>
@@ -599,60 +986,80 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 <div id="matchMessage" class="message"></div>
 
 <button class="next" onclick="newMatch()">🔄 NOWY MECZ</button>
+
 <button class="back" onclick="menu()">⬅️ WRÓĆ</button>
 
 </section>
 
 
 <!-- SPEED -->
+
 <section id="speed" class="hidden">
 
 <div class="logo">⏱️ SPEED QUIZ</div>
 
 <div class="card">
+
 <h2>60 SEKUND</h2>
+
 <p>Wynik: <b id="speedScore">0</b></p>
+
 <p>Czas: <b id="speedTime">60</b></p>
+
 </div>
 
 <div id="speedQuestion" class="question"></div>
+
 <div id="speedAnswers" class="answers"></div>
+
 <div id="speedMessage" class="message"></div>
 
 <button class="next" onclick="startSpeed()">▶️ START</button>
+
 <button class="back" onclick="menu()">⬅️ WRÓĆ</button>
 
 </section>
 
 
 <!-- SURVIVAL -->
+
 <section id="survival" class="hidden">
 
 <div class="logo">❤️ SURVIVAL</div>
 
 <div class="card">
+
 <p>❤️ Życia: <b id="survivalLives">3</b></p>
+
 <p>🏆 Wynik: <b id="survivalScore">0</b></p>
+
 </div>
 
 <div id="survivalQuestion" class="question"></div>
+
 <div id="survivalAnswers" class="answers"></div>
+
 <div id="survivalMessage" class="message"></div>
 
 <button class="next" onclick="startSurvival()">▶️ START</button>
+
 <button class="back" onclick="menu()">⬅️ WRÓĆ</button>
 
 </section>
 
 
 <!-- TURNIEJ -->
+
 <section id="tournament" class="hidden">
 
 <div class="logo">🏆 TURNIEJ</div>
 
 <div class="card">
+
 <h2>Football Champions</h2>
+
 <p>Pokonaj kolejnych przeciwników i zostań mistrzem!</p>
+
 </div>
 
 <div id="tournamentText" class="card">
@@ -660,27 +1067,36 @@ Kliknij START, aby rozpocząć.
 </div>
 
 <button class="next" onclick="startTournament()">▶️ START</button>
+
 <button class="back" onclick="menu()">⬅️ WRÓĆ</button>
 
 </section>
 
 
 <!-- 2 GRACZY -->
+
 <section id="two" class="hidden">
 
 <div class="logo">👥 2 GRACZY</div>
 
 <div class="card">
+
 <p>👤 Gracz 1: <b id="p1">0</b></p>
+
 <p>👤 Gracz 2: <b id="p2">0</b></p>
+
 <p>Teraz odpowiada: <b id="turn">Gracz 1</b></p>
+
 </div>
 
 <div id="twoQuestion" class="question"></div>
+
 <div id="twoAnswers" class="answers"></div>
+
 <div id="twoMessage" class="message"></div>
 
 <button class="next" onclick="startTwo()">▶️ START</button>
+
 <button class="back" onclick="menu()">⬅️ WRÓĆ</button>
 
 </section>
@@ -703,8 +1119,8 @@ classic:[
 ],
 
 players:[
-["Kim jest ten piłkarz?",["Cristiano Ronaldo","Messi","Neymar","Mbappé"],"Cristiano Ronaldo","CR7."],
-["Kim jest ten piłkarz?",["Lionel Messi","Ronaldo","Haaland","Modrić"],"Lionel Messi","Argentyńczyk."],
+["Kim jest ten piłkarz?",["Cristiano Ronaldo","Lionel Messi","Neymar","Kylian Mbappé"],"Cristiano Ronaldo","CR7."],
+["Kim jest ten piłkarz?",["Lionel Messi","Cristiano Ronaldo","Haaland","Modrić"],"Lionel Messi","Argentyńczyk."],
 ["Kim jest ten piłkarz?",["Kylian Mbappé","Benzema","Griezmann","Dembélé"],"Kylian Mbappé","Francuz."],
 ["Kim jest ten piłkarz?",["Erling Haaland","Salah","Kane","Saka"],"Erling Haaland","Norweg."],
 ["Kim jest ten piłkarz?",["Robert Lewandowski","Milik","Zieliński","Szczęsny"],"Robert Lewandowski","Polski napastnik."]
@@ -738,26 +1154,13 @@ stats:[
 };
 
 const worldCountries=[
-["🇵🇱","Polska"],
-["🇪🇸","Hiszpania"],
-["🇧🇷","Brazylia"],
-["🇦🇷","Argentyna"],
-["🇫🇷","Francja"],
-["🇩🇪","Niemcy"],
-["🇬🇧","Anglia"],
-["🇮🇹","Włochy"],
-["🇵🇹","Portugalia"],
-["🇳🇱","Holandia"],
-["🇧🇪","Belgia"],
-["🇭🇷","Chorwacja"],
-["🇺🇾","Urugwaj"],
-["🇲🇽","Meksyk"],
-["🇯🇵","Japonia"],
-["🇲🇦","Maroko"],
-["🇨🇴","Kolumbia"],
-["🇨🇱","Chile"],
-["🇨🇭","Szwajcaria"],
-["🇹🇷","Turcja"]
+["🇵🇱","Polska"],["🇪🇸","Hiszpania"],["🇧🇷","Brazylia"],
+["🇦🇷","Argentyna"],["🇫🇷","Francja"],["🇩🇪","Niemcy"],
+["🇬🇧","Anglia"],["🇮🇹","Włochy"],["🇵🇹","Portugalia"],
+["🇳🇱","Holandia"],["🇧🇪","Belgia"],["🇭🇷","Chorwacja"],
+["🇺🇾","Urugwaj"],["🇲🇽","Meksyk"],["🇯🇵","Japonia"],
+["🇲🇦","Maroko"],["🇨🇴","Kolumbia"],["🇨🇱","Chile"],
+["🇨🇭","Szwajcaria"],["🇹🇷","Turcja"]
 ];
 
 
@@ -766,43 +1169,132 @@ const worldCountries=[
 let save=JSON.parse(localStorage.getItem("footballQuizSave"));
 
 if(!save){
- save={
-  name:"Gracz",
-  level:1,
-  xp:0,
-  coins:50,
-  best:0,
-  combo:0,
-  games:0,
-  correct:0,
-  wrong:0,
-  world:[],
-  achievements:[],
-  ranking:[],
-  life:0,
-  time:0,
-  boost:false
- };
+
+save={
+name:"Gracz",
+level:1,
+xp:0,
+coins:50,
+best:0,
+combo:0,
+games:0,
+correct:0,
+wrong:0,
+world:[],
+achievements:[],
+ranking:[],
+life:0,
+time:0,
+boost:false,
+wallpaper:"grass",
+color:"green"
+};
+
 }
 
+if(!save.wallpaper)save.wallpaper="grass";
+if(!save.color)save.color="green";
+
 function saveData(){
- localStorage.setItem("footballQuizSave",JSON.stringify(save));
- update();
+
+localStorage.setItem(
+"footballQuizSave",
+JSON.stringify(save)
+);
+
+update();
+
+}
+
+
+/* ================= WYGLĄD ================= */
+
+function applyAppearance(){
+
+document.body.className=
+"wall-"+save.wallpaper+
+" color-"+save.color;
+
+}
+
+function setWallpaper(w,button){
+
+save.wallpaper=w;
+
+applyAppearance();
+
+saveData();
+
+document.querySelectorAll(".wallButton")
+.forEach(x=>x.classList.remove("selected"));
+
+button.classList.add("selected");
+
+}
+
+function setColor(c,button){
+
+save.color=c;
+
+applyAppearance();
+
+saveData();
+
+document.querySelectorAll(".colorButton")
+.forEach(x=>x.classList.remove("selected"));
+
+button.classList.add("selected");
+
+}
+
+function openAppearance(){
+
+hide();
+
+document.getElementById("appearance")
+.classList.remove("hidden");
+
+document.querySelectorAll(".wallButton")
+.forEach(x=>x.classList.remove("selected"));
+
+document.querySelectorAll(".colorButton")
+.forEach(x=>x.classList.remove("selected"));
+
+let wall=document.querySelector(
+".wall-"+save.wallpaper+"-preview"
+);
+
+if(wall)wall.classList.add("selected");
+
+let color=document.querySelector(
+".color-"+save.color+"-preview"
+);
+
+if(color)color.classList.add("selected");
+
 }
 
 
 /* ================= EKRANY ================= */
 
 function hide(){
- document.querySelectorAll("section")
- .forEach(x=>x.classList.add("hidden"));
+
+document.querySelectorAll("section")
+.forEach(x=>x.classList.add("hidden"));
+
 }
 
 function menu(){
- clearInterval(interval);
- hide();
- document.getElementById("menu").classList.remove("hidden");
- update();
+
+clearInterval(interval);
+
+hide();
+
+document.getElementById("menu")
+.classList.remove("hidden");
+
+update();
+
 }
 
 
@@ -826,19 +1318,24 @@ document.getElementById("xpBar").style.width=
 Math.min(100,save.xp/needed*100)+"%";
 
 document.getElementById("world").innerText=
-Math.round(save.world.length/worldCountries.length*100)+"%";
+Math.round(
+save.world.length/worldCountries.length*100
+)+"%";
 
 }
 
 
-/* ================= PROFILE ================= */
+/* ================= PROFIL ================= */
 
 function openProfile(){
 
 hide();
-document.getElementById("profile").classList.remove("hidden");
+
+document.getElementById("profile")
+.classList.remove("hidden");
 
 document.getElementById("nameInput").value=save.name;
+
 document.getElementById("profileName").innerText=save.name;
 document.getElementById("profileLevel").innerText=save.level;
 document.getElementById("profileGames").innerText=save.games;
@@ -850,12 +1347,15 @@ document.getElementById("profileBest").innerText=save.best;
 
 function saveName(){
 
-let n=document.getElementById("nameInput").value.trim();
+let n=document.getElementById("nameInput")
+.value.trim();
 
 if(!n)n="Gracz";
 
 save.name=n;
+
 saveData();
+
 openProfile();
 
 }
@@ -875,7 +1375,6 @@ let difficulty="easy";
 let seconds=15;
 let interval=null;
 let answered=false;
-let dailyMode=false;
 let fiftyUsed=false;
 let hintUsed=false;
 
@@ -894,9 +1393,11 @@ mode=m;
 
 hide();
 
-document.getElementById("difficulty").classList.remove("hidden");
+document.getElementById("difficulty")
+.classList.remove("hidden");
 
-document.getElementById("modeTitle").innerText=names[m];
+document.getElementById("modeTitle")
+.innerText=names[m];
 
 }
 
@@ -925,7 +1426,9 @@ lives=3+save.life;
 save.life=0;
 
 hide();
-document.getElementById("game").classList.remove("hidden");
+
+document.getElementById("game")
+.classList.remove("hidden");
 
 showQuestion();
 
@@ -943,16 +1446,14 @@ let q=list[current];
 
 document.getElementById("picture").innerHTML="";
 
-if(mode==="players"){
- loadImage(q[1][q[1].indexOf(q[2])]);
-}
-
 document.getElementById("question").innerText=q[0];
 
 let arr=[...q[1]];
+
 arr.sort(()=>Math.random()-.5);
 
 let box=document.getElementById("answers");
+
 box.innerHTML="";
 
 arr.forEach(a=>{
@@ -970,39 +1471,15 @@ box.appendChild(b);
 
 document.getElementById("message").innerText="";
 
-document.getElementById("next").classList.add("hidden");
+document.getElementById("next")
+.classList.add("hidden");
 
-document.getElementById("progressBar").style.width=
-(current/list.length*100)+"%";
+document.getElementById("progressBar")
+.style.width=(current/list.length*100)+"%";
 
 startTimer();
+
 gameUpdate();
-
-}
-
-async function loadImage(name){
-
-try{
-
-let r=await fetch(
-"https://pl.wikipedia.org/api/rest_v1/page/summary/"
-+encodeURIComponent(name)
-);
-
-let d=await r.json();
-
-if(d.thumbnail){
-
-let img=document.createElement("img");
-
-img.src=d.thumbnail.source;
-img.className="playerImage";
-
-document.getElementById("picture").appendChild(img);
-
-}
-
-}catch(e){}
 
 }
 
@@ -1021,6 +1498,7 @@ document.getElementById("timer").innerText=t;
 if(t<=0){
 
 clearInterval(interval);
+
 timeout();
 
 }
@@ -1034,14 +1512,19 @@ function answer(button,a){
 if(answered)return;
 
 answered=true;
+
 clearInterval(interval);
 
 let q=list[current];
 
 document.querySelectorAll(".answer")
 .forEach(b=>{
- b.disabled=true;
- if(b.innerText===q[2])b.classList.add("correct");
+
+b.disabled=true;
+
+if(b.innerText===q[2])
+b.classList.add("correct");
+
 });
 
 if(a===q[2]){
@@ -1068,18 +1551,21 @@ save.correct++;
 
 addXP(points*5);
 
-document.getElementById("message").innerText=
-"✅ DOBRZE! +"+points+" pkt";
+document.getElementById("message")
+.innerText="✅ DOBRZE! +"+points+" pkt";
 
 }else{
 
 button.classList.add("wrong");
 
 lives--;
+
 combo=0;
+
 save.wrong++;
 
-document.getElementById("message").innerText=
+document.getElementById("message")
+.innerText=
 "❌ ŹLE! Poprawna: "+q[2];
 
 }
@@ -1092,7 +1578,8 @@ setTimeout(endGame,700);
 
 }else{
 
-document.getElementById("next").classList.remove("hidden");
+document.getElementById("next")
+.classList.remove("hidden");
 
 }
 
@@ -1112,19 +1599,28 @@ save.wrong++;
 
 document.querySelectorAll(".answer")
 .forEach(b=>{
- b.disabled=true;
- if(b.innerText===q[2])b.classList.add("correct");
+
+b.disabled=true;
+
+if(b.innerText===q[2])
+b.classList.add("correct");
+
 });
 
-document.getElementById("message").innerText=
-"⏰ CZAS! Poprawna: "+q[2];
+document.getElementById("message")
+.innerText="⏰ CZAS! Poprawna: "+q[2];
 
 gameUpdate();
 
 if(lives<=0){
- setTimeout(endGame,700);
+
+setTimeout(endGame,700);
+
 }else{
- document.getElementById("next").classList.remove("hidden");
+
+document.getElementById("next")
+.classList.remove("hidden");
+
 }
 
 }
@@ -1134,8 +1630,10 @@ function nextQuestion(){
 current++;
 
 if(current>=list.length){
- endGame();
- return;
+
+endGame();
+return;
+
 }
 
 showQuestion();
@@ -1169,18 +1667,25 @@ function endGame(){
 clearInterval(interval);
 
 save.games++;
+
 save.coins+=gameCoins;
 
-if(score>save.best)save.best=score;
-if(bestCombo>save.combo)save.combo=bestCombo;
+if(score>save.best)
+save.best=score;
+
+if(bestCombo>save.combo)
+save.combo=bestCombo;
 
 addXP(score);
 
 save.ranking.push(score);
+
 save.ranking.sort((a,b)=>b-a);
+
 save.ranking=save.ranking.slice(0,10);
 
 checkAchievements();
+
 saveData();
 
 document.getElementById("finalScore").innerText=score;
@@ -1189,7 +1694,9 @@ document.getElementById("finalCoins").innerText=gameCoins;
 document.getElementById("finalCombo").innerText=bestCombo;
 
 hide();
-document.getElementById("result").classList.remove("hidden");
+
+document.getElementById("result")
+.classList.remove("hidden");
 
 }
 
@@ -1201,8 +1708,12 @@ function fifty(){
 if(answered||fiftyUsed)return;
 
 if(gameCoins<3){
- document.getElementById("message").innerText="🪙 Potrzebujesz 3 monet.";
- return;
+
+document.getElementById("message")
+.innerText="🪙 Potrzebujesz 3 monet.";
+
+return;
+
 }
 
 gameCoins-=3;
@@ -1226,15 +1737,19 @@ function hint(){
 if(answered||hintUsed)return;
 
 if(gameCoins<2){
- document.getElementById("message").innerText="🪙 Potrzebujesz 2 monet.";
- return;
+
+document.getElementById("message")
+.innerText="🪙 Potrzebujesz 2 monet.";
+
+return;
+
 }
 
 gameCoins-=2;
 hintUsed=true;
 
-document.getElementById("message").innerText=
-"💡 "+list[current][3];
+document.getElementById("message")
+.innerText="💡 "+list[current][3];
 
 gameUpdate();
 
@@ -1246,7 +1761,10 @@ gameUpdate();
 function openWorld(){
 
 hide();
-document.getElementById("worldPage").classList.remove("hidden");
+
+document.getElementById("worldPage")
+.classList.remove("hidden");
+
 renderWorld();
 
 }
@@ -1254,13 +1772,15 @@ renderWorld();
 function renderWorld(){
 
 let box=document.getElementById("countries");
+
 box.innerHTML="";
 
 let percent=Math.round(
 save.world.length/worldCountries.length*100
 );
 
-document.getElementById("worldPercent").innerText=percent+"%";
+document.getElementById("worldPercent")
+.innerText=percent+"%";
 
 worldCountries.forEach((c,i)=>{
 
@@ -1281,15 +1801,23 @@ c[0]+"<br>"+c[1]+
 b.onclick=()=>{
 
 if(!unlocked){
- alert("🔒 Najpierw odblokuj wcześniejszy kraj!");
- return;
+
+alert("🔒 Najpierw odblokuj wcześniejszy kraj!");
+
+return;
+
 }
 
 if(!save.world.includes(i)){
- save.world.push(i);
- save.coins+=20;
- addXP(50);
- saveData();
+
+save.world.push(i);
+
+save.coins+=20;
+
+addXP(50);
+
+saveData();
+
 }
 
 selectMode("classic");
@@ -1308,8 +1836,12 @@ box.appendChild(b);
 function openShop(){
 
 hide();
-document.getElementById("shopPage").classList.remove("hidden");
-document.getElementById("shopCoins").innerText=save.coins;
+
+document.getElementById("shopPage")
+.classList.remove("hidden");
+
+document.getElementById("shopCoins")
+.innerText=save.coins;
 
 }
 
@@ -1318,8 +1850,11 @@ function buy(type){
 if(type==="life"){
 
 if(save.coins<20){
+
 alert("❌ Za mało monet!");
+
 return;
+
 }
 
 save.coins-=20;
@@ -1330,8 +1865,11 @@ save.life++;
 if(type==="time"){
 
 if(save.coins<30){
+
 alert("❌ Za mało monet!");
+
 return;
+
 }
 
 save.coins-=30;
@@ -1342,13 +1880,19 @@ save.time+=3;
 if(type==="boost"){
 
 if(save.boost){
+
 alert("🔥 Masz już Combo Boost!");
+
 return;
+
 }
 
 if(save.coins<50){
+
 alert("❌ Za mało monet!");
+
 return;
+
 }
 
 save.coins-=50;
@@ -1357,6 +1901,7 @@ save.boost=true;
 }
 
 saveData();
+
 openShop();
 
 }
@@ -1365,6 +1910,7 @@ openShop();
 /* ================= OSIĄGNIĘCIA ================= */
 
 const achievements=[
+
 ["first","⚽ Pierwszy quiz","Zagraj pierwszy quiz."],
 ["ten","🎮 Weteran","Zagraj 10 quizów."],
 ["score10","🔥 Snajper","Zdobądź 10 punktów."],
@@ -1373,6 +1919,7 @@ const achievements=[
 ["level5","⭐ Poziom 5","Osiągnij poziom 5."],
 ["level10","🥇 Poziom 10","Osiągnij poziom 10."],
 ["world","🌍 Podróżnik","Odblokuj wszystkie kraje."]
+
 ];
 
 function checkAchievements(){
@@ -1384,7 +1931,9 @@ if(save.best>=30)unlock("score30");
 if(save.combo>=5)unlock("combo5");
 if(save.level>=5)unlock("level5");
 if(save.level>=10)unlock("level10");
-if(save.world.length>=worldCountries.length)unlock("world");
+
+if(save.world.length>=worldCountries.length)
+unlock("world");
 
 }
 
@@ -1400,9 +1949,12 @@ function openAchievements(){
 checkAchievements();
 
 hide();
-document.getElementById("achievements").classList.remove("hidden");
+
+document.getElementById("achievements")
+.classList.remove("hidden");
 
 let box=document.getElementById("achievementList");
+
 box.innerHTML="";
 
 achievements.forEach(a=>{
@@ -1411,7 +1963,8 @@ let done=save.achievements.includes(a[0]);
 
 let d=document.createElement("div");
 
-d.className="achievement "+(done?"done":"");
+d.className=
+"achievement "+(done?"done":"");
 
 d.innerHTML=
 "<b>"+a[1]+"</b><br>"+
@@ -1430,14 +1983,21 @@ box.appendChild(d);
 function openRanking(){
 
 hide();
-document.getElementById("ranking").classList.remove("hidden");
+
+document.getElementById("ranking")
+.classList.remove("hidden");
 
 let box=document.getElementById("rankingList");
+
 box.innerHTML="";
 
 if(!save.ranking.length){
-box.innerHTML="<p class='sub'>Brak wyników.</p>";
+
+box.innerHTML=
+"<p class='sub'>Brak wyników.</p>";
+
 return;
+
 }
 
 save.ranking.forEach((x,i)=>{
@@ -1460,24 +2020,45 @@ box.appendChild(d);
 /* ================= KIM JESTEM ================= */
 
 const whoData=[
-["🇦🇷 Jestem Argentyńczykiem, mam 8 Złotych Piłek i wygrałem mundial.","Lionel Messi",["Lionel Messi","Neymar","Mbappé","Ronaldo"]],
-["🇵🇹 Jestem Portugalczykiem i jestem znany jako CR7.","Cristiano Ronaldo",["Cristiano Ronaldo","Bruno Fernandes","Pepe","Salah"]],
-["🇳🇴 Jestem Norwegiem i słynę ze zdobywania ogromnej liczby goli.","Erling Haaland",["Haaland","Kane","Salah","Saka"]]
+
+[
+"🇦🇷 Jestem Argentyńczykiem, mam 8 Złotych Piłek i wygrałem mundial.",
+"Lionel Messi",
+["Lionel Messi","Neymar","Mbappé","Ronaldo"]
+],
+
+[
+"🇵🇹 Jestem Portugalczykiem i jestem znany jako CR7.",
+"Cristiano Ronaldo",
+["Cristiano Ronaldo","Bruno Fernandes","Pepe","Salah"]
+],
+
+[
+"🇳🇴 Jestem Norwegiem i słynę ze zdobywania ogromnej liczby goli.",
+"Erling Haaland",
+["Haaland","Kane","Salah","Saka"]
+]
+
 ];
 
 function openWho(){
 
 hide();
-document.getElementById("who").classList.remove("hidden");
+
+document.getElementById("who")
+.classList.remove("hidden");
+
 newWho();
 
 }
 
 function newWho(){
 
-let x=whoData[Math.floor(Math.random()*whoData.length)];
+let x=
+whoData[Math.floor(Math.random()*whoData.length)];
 
-document.getElementById("whoText").innerText=x[0];
+document.getElementById("whoText")
+.innerText=x[0];
 
 makeAnswers(
 "whoAnswers",
@@ -1491,12 +2072,17 @@ x[1],
 function makeAnswers(id,arr,correct,msgId){
 
 let box=document.getElementById(id);
-box.innerHTML="";
-document.getElementById(msgId).innerText="";
 
-arr.sort(()=>Math.random()-.5).forEach(a=>{
+box.innerHTML="";
+
+document.getElementById(msgId)
+.innerText="";
+
+arr.sort(()=>Math.random()-.5)
+.forEach(a=>{
 
 let b=document.createElement("button");
+
 b.className="answer";
 b.innerText=a;
 
@@ -1506,14 +2092,24 @@ document.querySelectorAll("#"+id+" .answer")
 .forEach(x=>x.disabled=true);
 
 if(a===correct){
- b.classList.add("correct");
- document.getElementById(msgId).innerText="✅ DOBRZE!";
- addXP(10);
- saveData();
+
+b.classList.add("correct");
+
+document.getElementById(msgId)
+.innerText="✅ DOBRZE!";
+
+addXP(10);
+
+saveData();
+
 }else{
- b.classList.add("wrong");
- document.getElementById(msgId).innerText=
- "❌ Poprawna odpowiedź: "+correct;
+
+b.classList.add("wrong");
+
+document.getElementById(msgId)
+.innerText=
+"❌ Poprawna odpowiedź: "+correct;
+
 }
 
 };
@@ -1528,25 +2124,45 @@ box.appendChild(b);
 /* ================= KARIERA ================= */
 
 const careerData=[
-["Sporting CP → Manchester United → Real Madrid → Juventus → Manchester United","Cristiano Ronaldo",["Cristiano Ronaldo","Messi","Neymar","Salah"]],
-["Rosario → Barcelona → PSG → Inter Miami","Lionel Messi",["Lionel Messi","Ronaldo","Mbappé","Suárez"]],
-["Santos → Barcelona → PSG → Al Hilal","Neymar",["Neymar","Vinícius","Rodrygo","Raphinha"]]
+
+[
+"Sporting CP → Manchester United → Real Madrid → Juventus → Manchester United",
+"Cristiano Ronaldo",
+["Cristiano Ronaldo","Messi","Neymar","Salah"]
+],
+
+[
+"Rosario → Barcelona → PSG → Inter Miami",
+"Lionel Messi",
+["Lionel Messi","Ronaldo","Mbappé","Suárez"]
+],
+
+[
+"Santos → Barcelona → PSG → Al Hilal",
+"Neymar",
+["Neymar","Vinícius","Rodrygo","Raphinha"]
+]
+
 ];
 
 function openCareer(){
 
 hide();
-document.getElementById("career").classList.remove("hidden");
+
+document.getElementById("career")
+.classList.remove("hidden");
+
 newCareer();
 
 }
 
 function newCareer(){
 
-let x=careerData[Math.floor(Math.random()*careerData.length)];
+let x=
+careerData[Math.floor(Math.random()*careerData.length)];
 
-document.getElementById("careerText").innerHTML=
-"<b>📰 Kariera:</b><br><br>"+x[0];
+document.getElementById("careerText")
+.innerHTML="<b>📰 Kariera:</b><br><br>"+x[0];
 
 makeAnswers(
 "careerAnswers",
@@ -1561,24 +2177,45 @@ x[1],
 /* ================= MECZ ================= */
 
 const matchData=[
-["🇦🇷 3 — 3 🇫🇷<br>🏆 Finał mundialu<br>2022","Argentyna",["Argentyna","Francja","Brazylia","Chorwacja"]],
-["🇩🇪 1 — 0 🇦🇷<br>🏆 Finał mundialu<br>2014","Niemcy",["Niemcy","Argentyna","Brazylia","Holandia"]],
-["🇪🇸 1 — 0 🇳🇱<br>🏆 Finał mundialu<br>2010","Hiszpania",["Hiszpania","Holandia","Niemcy","Włochy"]]
+
+[
+"🇦🇷 3 — 3 🇫🇷<br>🏆 Finał mundialu<br>2022",
+"Argentyna",
+["Argentyna","Francja","Brazylia","Chorwacja"]
+],
+
+[
+"🇩🇪 1 — 0 🇦🇷<br>🏆 Finał mundialu<br>2014",
+"Niemcy",
+["Niemcy","Argentyna","Brazylia","Holandia"]
+],
+
+[
+"🇪🇸 1 — 0 🇳🇱<br>🏆 Finał mundialu<br>2010",
+"Hiszpania",
+["Hiszpania","Holandia","Niemcy","Włochy"]
+]
+
 ];
 
 function openMatch(){
 
 hide();
-document.getElementById("match").classList.remove("hidden");
+
+document.getElementById("match")
+.classList.remove("hidden");
+
 newMatch();
 
 }
 
 function newMatch(){
 
-let x=matchData[Math.floor(Math.random()*matchData.length)];
+let x=
+matchData[Math.floor(Math.random()*matchData.length)];
 
-document.getElementById("matchText").innerHTML=x[0];
+document.getElementById("matchText")
+.innerHTML=x[0];
 
 makeAnswers(
 "matchAnswers",
@@ -1599,7 +2236,9 @@ let speedScore=0;
 function openSpeed(){
 
 hide();
-document.getElementById("speed").classList.remove("hidden");
+
+document.getElementById("speed")
+.classList.remove("hidden");
 
 }
 
@@ -1610,8 +2249,11 @@ clearInterval(speedInterval);
 speedTime=60;
 speedScore=0;
 
-document.getElementById("speedScore").innerText=0;
-document.getElementById("speedTime").innerText=60;
+document.getElementById("speedScore")
+.innerText=0;
+
+document.getElementById("speedTime")
+.innerText=60;
 
 speedQuestion();
 
@@ -1619,13 +2261,16 @@ speedInterval=setInterval(()=>{
 
 speedTime--;
 
-document.getElementById("speedTime").innerText=speedTime;
+document.getElementById("speedTime")
+.innerText=speedTime;
 
 if(speedTime<=0){
 
 clearInterval(speedInterval);
 
-alert("⏱️ Koniec! Wynik: "+speedScore);
+alert(
+"⏱️ Koniec! Wynik: "+speedScore
+);
 
 }
 
@@ -1641,12 +2286,16 @@ Math.floor(Math.random()*questions.classic.length)
 
 let box=document.getElementById("speedAnswers");
 
-document.getElementById("speedQuestion").innerText=q[0];
-document.getElementById("speedMessage").innerText="";
+document.getElementById("speedQuestion")
+.innerText=q[0];
+
+document.getElementById("speedMessage")
+.innerText="";
 
 box.innerHTML="";
 
-q[1].sort(()=>Math.random()-.5).forEach(a=>{
+q[1].sort(()=>Math.random()-.5)
+.forEach(a=>{
 
 let b=document.createElement("button");
 
@@ -1658,7 +2307,9 @@ b.onclick=()=>{
 if(a===q[2]){
 
 speedScore++;
-document.getElementById("speedScore").innerText=speedScore;
+
+document.getElementById("speedScore")
+.innerText=speedScore;
 
 }
 
@@ -1681,7 +2332,9 @@ let survivalScore=0;
 function openSurvival(){
 
 hide();
-document.getElementById("survival").classList.remove("hidden");
+
+document.getElementById("survival")
+.classList.remove("hidden");
 
 }
 
@@ -1704,12 +2357,16 @@ Math.floor(Math.random()*questions.classic.length)
 
 let box=document.getElementById("survivalAnswers");
 
-document.getElementById("survivalQuestion").innerText=q[0];
-document.getElementById("survivalMessage").innerText="";
+document.getElementById("survivalQuestion")
+.innerText=q[0];
+
+document.getElementById("survivalMessage")
+.innerText="";
 
 box.innerHTML="";
 
-q[1].sort(()=>Math.random()-.5).forEach(a=>{
+q[1].sort(()=>Math.random()-.5)
+.forEach(a=>{
 
 let b=document.createElement("button");
 
@@ -1732,7 +2389,9 @@ updateSurvival();
 
 if(survivalLives<=0){
 
-alert("❤️ KONIEC SURVIVALU!\nWynik: "+survivalScore);
+alert(
+"❤️ KONIEC SURVIVALU!\nWynik: "+survivalScore
+);
 
 }else{
 
@@ -1750,8 +2409,11 @@ box.appendChild(b);
 
 function updateSurvival(){
 
-document.getElementById("survivalLives").innerText=survivalLives;
-document.getElementById("survivalScore").innerText=survivalScore;
+document.getElementById("survivalLives")
+.innerText=survivalLives;
+
+document.getElementById("survivalScore")
+.innerText=survivalScore;
 
 }
 
@@ -1763,7 +2425,9 @@ let tournamentRound=0;
 function openTournament(){
 
 hide();
-document.getElementById("tournament").classList.remove("hidden");
+
+document.getElementById("tournament")
+.classList.remove("hidden");
 
 }
 
@@ -1771,37 +2435,33 @@ function startTournament(){
 
 tournamentRound=1;
 
-document.getElementById("tournamentText").innerHTML=
-"🏆 ĆWIERĆFINAŁ<br><br>"+
-"Twoja drużyna rozpoczyna turniej!<br>"+
-"Każda poprawna odpowiedź przybliża Cię do finału.";
-
 let rounds=4;
 let won=0;
 
 for(let i=0;i<rounds;i++){
 
-let q=questions.classic[
-Math.floor(Math.random()*questions.classic.length)
-];
-
-if(Math.random()>.35)won++;
+if(Math.random()>.35)
+won++;
 
 }
 
 if(won>=3){
 
-document.getElementById("tournamentText").innerHTML=
+document.getElementById("tournamentText")
+.innerHTML=
 "🏆 WYGRAŁEŚ TURNIEJ!<br><br>"+
 "🔥 Jesteś mistrzem Football Quiz!";
 
 addXP(100);
+
 save.coins+=50;
+
 saveData();
 
 }else{
 
-document.getElementById("tournamentText").innerHTML=
+document.getElementById("tournamentText")
+.innerHTML=
 "❌ Odpadłeś z turnieju.<br><br>"+
 "Spróbuj ponownie!";
 
@@ -1819,7 +2479,9 @@ let twoTurn=1;
 function openTwo(){
 
 hide();
-document.getElementById("two").classList.remove("hidden");
+
+document.getElementById("two")
+.classList.remove("hidden");
 
 }
 
@@ -1839,19 +2501,25 @@ let q=questions.classic[
 Math.floor(Math.random()*questions.classic.length)
 ];
 
-document.getElementById("twoQuestion").innerText=q[0];
+document.getElementById("twoQuestion")
+.innerText=q[0];
 
-document.getElementById("p1").innerText=twoScore1;
-document.getElementById("p2").innerText=twoScore2;
+document.getElementById("p1")
+.innerText=twoScore1;
 
-document.getElementById("turn").innerText=
+document.getElementById("p2")
+.innerText=twoScore2;
+
+document.getElementById("turn")
+.innerText=
 twoTurn===1?"Gracz 1":"Gracz 2";
 
 let box=document.getElementById("twoAnswers");
 
 box.innerHTML="";
 
-q[1].sort(()=>Math.random()-.5).forEach(a=>{
+q[1].sort(()=>Math.random()-.5)
+.forEach(a=>{
 
 let b=document.createElement("button");
 
@@ -1862,12 +2530,15 @@ b.onclick=()=>{
 
 if(a===q[2]){
 
-if(twoTurn===1)twoScore1++;
-else twoScore2++;
+if(twoTurn===1)
+twoScore1++;
+else
+twoScore2++;
 
 }
 
-twoTurn=twoTurn===1?2:1;
+twoTurn=
+twoTurn===1?2:1;
 
 twoQuestion();
 
@@ -1884,20 +2555,28 @@ box.appendChild(b);
 
 function daily(){
 
-let today=new Date().toISOString().slice(0,10);
+let today=
+new Date().toISOString().slice(0,10);
 
-if(localStorage.getItem("footballDaily")===today){
+if(
+localStorage.getItem("footballDaily")
+===today
+){
 
-alert("📅 Daily Challenge jest już dzisiaj ukończony!");
+alert(
+"📅 Daily Challenge jest już dzisiaj ukończony!"
+);
 
 return;
 
 }
 
-localStorage.setItem("footballDaily",today);
+localStorage.setItem(
+"footballDaily",
+today
+);
 
 mode="classic";
-dailyMode=true;
 
 start("elite");
 
@@ -1906,6 +2585,7 @@ start("elite");
 
 /* ================= START ================= */
 
+applyAppearance();
 update();
 
 </script>
