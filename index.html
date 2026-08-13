@@ -2,531 +2,585 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Football Quiz</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
 :root{
- --main:#4cff8b;
- --dark:#071b0e;
- --panel:#12371f;
- --button:#185d36;
- --text:#fff;
+    --main:#4cff8b;
+    --panel:#12371f;
+    --button:#185d36;
+    --text:#ffffff;
 }
 
 body{
- margin:0;
- min-height:100vh;
- font-family:Arial,sans-serif;
- color:var(--text);
- background:#031b0d;
- transition:.4s;
- overflow-x:hidden;
+    margin:0;
+    min-height:100vh;
+    font-family:Arial,sans-serif;
+    color:var(--text);
+    transition:.4s;
+    overflow-x:hidden;
 }
 
-/* TAPETY */
+/* ================= TAPETY ================= */
 
 body.wall-grass{
- background:
- radial-gradient(circle at 20% 20%,rgba(80,255,120,.15),transparent 25%),
- linear-gradient(135deg,#021d0c,#08783b,#021d0c);
+    background:
+    radial-gradient(circle at 20% 20%,rgba(80,255,120,.15),transparent 25%),
+    linear-gradient(135deg,#021d0c,#08783b,#021d0c);
 }
 
 body.wall-night{
- background:
- radial-gradient(circle at 50% 20%,#244b91 0%,transparent 25%),
- linear-gradient(180deg,#020617,#071b38 55%,#02050b);
+    background:
+    radial-gradient(circle at 50% 20%,#244b91 0%,transparent 25%),
+    linear-gradient(180deg,#020617,#071b38 55%,#02050b);
 }
 
 body.wall-lava{
- background:
- radial-gradient(circle at 50% 110%,#ff3b00 0%,transparent 35%),
- radial-gradient(circle at 20% 90%,#ff8c00 0%,transparent 20%),
- linear-gradient(145deg,#160000,#4b0800,#090000);
+    background:
+    radial-gradient(circle at 50% 110%,#ff3b00 0%,transparent 35%),
+    radial-gradient(circle at 20% 90%,#ff8c00 0%,transparent 20%),
+    linear-gradient(145deg,#160000,#4b0800,#090000);
 }
 
 body.wall-space{
- background:
- radial-gradient(circle at 15% 25%,white 0 1px,transparent 2px),
- radial-gradient(circle at 70% 15%,white 0 1px,transparent 2px),
- radial-gradient(circle at 35% 70%,white 0 1px,transparent 2px),
- radial-gradient(circle at 85% 75%,white 0 1px,transparent 2px),
- radial-gradient(circle at 50% 50%,#44248a 0%,transparent 35%),
- linear-gradient(135deg,#02000c,#090026,#010006);
- background-size:170px 170px,230px 230px,190px 190px,250px 250px,100% 100%,100% 100%;
+    background:
+    radial-gradient(circle at 15% 25%,white 0 1px,transparent 2px),
+    radial-gradient(circle at 70% 15%,white 0 1px,transparent 2px),
+    radial-gradient(circle at 35% 70%,white 0 1px,transparent 2px),
+    radial-gradient(circle at 85% 75%,white 0 1px,transparent 2px),
+    radial-gradient(circle at 50% 50%,#44248a 0%,transparent 35%),
+    linear-gradient(135deg,#02000c,#090026,#010006);
+    background-size:170px 170px,230px 230px,190px 190px,250px 250px,100% 100%,100% 100%;
 }
 
 body.wall-black{
- background:
- linear-gradient(135deg,#000,#111,#000);
+    background:linear-gradient(135deg,#000,#111,#000);
 }
 
-/* KOLORY */
+/* ================= KOLORY ================= */
+
+body.color-green{
+    --main:#4cff8b;
+    --button:#185d36;
+    --panel:#12371f;
+}
 
 body.color-blue{
- --main:#42a5ff;
- --button:#155b91;
- --panel:#102e48;
+    --main:#42a5ff;
+    --button:#155b91;
+    --panel:#102e48;
 }
 
 body.color-red{
- --main:#ff5757;
- --button:#8d2525;
- --panel:#421717;
+    --main:#ff5757;
+    --button:#8d2525;
+    --panel:#421717;
 }
 
 body.color-purple{
- --main:#c875ff;
- --button:#652d91;
- --panel:#32174b;
+    --main:#c875ff;
+    --button:#652d91;
+    --panel:#32174b;
 }
 
 body.color-gold{
- --main:#ffd34d;
- --button:#876814;
- --panel:#423511;
+    --main:#ffd34d;
+    --button:#876814;
+    --panel:#423511;
 }
 
-body.color-green{
- --main:#4cff8b;
- --button:#185d36;
- --panel:#12371f;
-}
-
-button{
- border:0;
- cursor:pointer;
- font-family:inherit;
- transition:.2s;
-}
-
-button:hover{
- transform:translateY(-2px);
- filter:brightness(1.12);
-}
+/* ================= OGÓLNE ================= */
 
 .app{
- width:94%;
- max-width:1000px;
- margin:20px auto;
- background:rgba(4,18,9,.91);
- border:1px solid var(--main);
- border-radius:25px;
- padding:22px;
- box-shadow:0 0 40px rgba(0,0,0,.6);
- backdrop-filter:blur(6px);
+    width:94%;
+    max-width:1000px;
+    margin:20px auto;
+    background:rgba(4,18,9,.91);
+    border:1px solid var(--main);
+    border-radius:25px;
+    padding:22px;
+    box-shadow:0 0 40px rgba(0,0,0,.6);
+    backdrop-filter:blur(6px);
 }
 
-.hidden{display:none!important}
+.hidden{
+    display:none!important;
+}
 
 .logo{
- text-align:center;
- font-size:42px;
- font-weight:900;
- color:var(--main);
- margin-bottom:5px;
- text-shadow:0 0 15px rgba(255,255,255,.08);
+    text-align:center;
+    font-size:42px;
+    font-weight:900;
+    color:var(--main);
+    margin-bottom:5px;
 }
 
 .sub{
- text-align:center;
- color:#d2e8da;
+    text-align:center;
+    color:#d2e8da;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+    font-family:inherit;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.12);
+}
+
+button:disabled{
+    cursor:not-allowed;
 }
 
 .profile{
- background:var(--panel);
- border-radius:18px;
- padding:15px;
- margin:15px 0;
+    background:var(--panel);
+    border-radius:18px;
+    padding:15px;
+    margin:15px 0;
 }
 
 .profileTop{
- display:flex;
- justify-content:space-between;
- flex-wrap:wrap;
- gap:8px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
 }
 
 .xp{
- height:12px;
- background:#29362d;
- border-radius:20px;
- margin-top:10px;
- overflow:hidden;
+    height:12px;
+    background:#29362d;
+    border-radius:20px;
+    margin-top:10px;
+    overflow:hidden;
 }
 
 #xpBar{
- height:100%;
- width:0%;
- background:var(--main);
- transition:.4s;
+    height:100%;
+    width:0%;
+    background:var(--main);
+    transition:.4s;
 }
 
 .infoGrid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:10px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
 }
 
 .info{
- background:var(--panel);
- border-radius:15px;
- padding:13px;
- text-align:center;
+    background:var(--panel);
+    border-radius:15px;
+    padding:13px;
+    text-align:center;
 }
 
 .menu{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:12px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
 .menu button{
- padding:20px 10px;
- border-radius:17px;
- background:var(--button);
- color:white;
- font-size:17px;
- font-weight:bold;
+    padding:20px 10px;
+    border-radius:17px;
+    background:var(--button);
+    color:white;
+    font-size:17px;
+    font-weight:bold;
 }
 
 .gold{
- background:linear-gradient(90deg,#78500b,#d49b18)!important;
+    background:linear-gradient(90deg,#78500b,#d49b18)!important;
 }
 
 .next{
- width:100%;
- padding:16px;
- border-radius:14px;
- background:var(--main);
- color:#06150a;
- font-size:18px;
- font-weight:bold;
- margin-top:12px;
+    width:100%;
+    padding:16px;
+    border-radius:14px;
+    background:var(--main);
+    color:#06150a;
+    font-size:18px;
+    font-weight:bold;
+    margin-top:12px;
 }
 
 .back{
- width:100%;
- padding:15px;
- border-radius:14px;
- background:#334b3a;
- color:white;
- font-weight:bold;
- margin-top:10px;
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    background:#334b3a;
+    color:white;
+    font-weight:bold;
+    margin-top:10px;
 }
 
 .pageTitle{
- text-align:center;
- font-size:30px;
+    text-align:center;
+    font-size:30px;
 }
 
+/* ================= TRUDNOŚĆ ================= */
+
 .difficulty{
- display:grid;
- gap:12px;
+    display:grid;
+    gap:12px;
 }
 
 .diff{
- padding:22px;
- border-radius:18px;
- color:white;
- font-size:20px;
- font-weight:bold;
+    padding:22px;
+    border-radius:18px;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
 }
 
-.easy{background:#168b49}
-.medium{background:#a87612}
-.hard{background:#ad3030}
-.elite{background:#6332ad}
+.easy{
+    background:#168b49;
+}
+
+.medium{
+    background:#a87612;
+}
+
+.hard{
+    background:#ad3030;
+}
+
+.elite{
+    background:#6332ad;
+}
+
+/* ================= GRA ================= */
 
 .stats{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:8px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
 }
 
 .stat{
- background:var(--panel);
- border-radius:13px;
- padding:12px 5px;
- text-align:center;
+    background:var(--panel);
+    border-radius:13px;
+    padding:12px 5px;
+    text-align:center;
 }
 
 .progress{
- margin:12px 0;
- height:8px;
- background:#294433;
- border-radius:20px;
- overflow:hidden;
+    margin:12px 0;
+    height:8px;
+    background:#294433;
+    border-radius:20px;
+    overflow:hidden;
 }
 
 #progressBar{
- height:100%;
- width:0;
- background:var(--main);
+    height:100%;
+    width:0;
+    background:var(--main);
 }
 
 .timer{
- text-align:center;
- font-size:22px;
- font-weight:bold;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
 }
 
 .question{
- text-align:center;
- font-size:27px;
- font-weight:bold;
- margin:20px 0;
- min-height:65px;
+    text-align:center;
+    font-size:27px;
+    font-weight:bold;
+    margin:20px 0;
+    min-height:65px;
 }
 
 .answers{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
 }
 
 .answer{
- background:var(--button);
- color:white;
- padding:17px;
- border-radius:14px;
- font-size:17px;
- font-weight:bold;
+    background:var(--button);
+    color:white;
+    padding:17px;
+    border-radius:14px;
+    font-size:17px;
+    font-weight:bold;
 }
 
-.correct{background:#079b49!important}
-.wrong{background:#c22f2f!important}
+.correct{
+    background:#079b49!important;
+}
+
+.wrong{
+    background:#c22f2f!important;
+}
 
 .message{
- text-align:center;
- min-height:28px;
- margin:12px;
- font-weight:bold;
+    text-align:center;
+    min-height:28px;
+    margin:12px;
+    font-weight:bold;
 }
 
 .tools{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
- margin-top:10px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:10px;
 }
 
 .tool{
- padding:13px;
- background:#315940;
- color:white;
- border-radius:12px;
- font-weight:bold;
-}
-
-.playerImage{
- width:210px;
- height:210px;
- object-fit:cover;
- display:block;
- margin:10px auto;
- border-radius:20px;
- border:4px solid var(--main);
+    padding:13px;
+    background:#315940;
+    color:white;
+    border-radius:12px;
+    font-weight:bold;
 }
 
 .result{
- text-align:center;
- font-size:65px;
- color:var(--main);
- font-weight:900;
+    text-align:center;
+    font-size:65px;
+    color:var(--main);
+    font-weight:900;
 }
+
+/* ================= KARTY ================= */
 
 .card{
- background:var(--panel);
- border-radius:18px;
- padding:18px;
- margin:10px 0;
-}
-
-.countryGrid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:10px;
-}
-
-.country{
- padding:15px 5px;
- border-radius:14px;
- background:var(--button);
- color:white;
- font-size:17px;
- font-weight:bold;
-}
-
-.country.locked{opacity:.35}
-.country.done{border:2px solid var(--main)}
-
-.shop{
- display:flex;
- justify-content:space-between;
- align-items:center;
- background:var(--panel);
- padding:15px;
- border-radius:14px;
- margin:8px 0;
- gap:10px;
-}
-
-.buy{
- padding:10px;
- border-radius:10px;
- background:var(--main);
- font-weight:bold;
-}
-
-.achievement{
- background:var(--panel);
- padding:14px;
- border-radius:14px;
- margin:8px 0;
-}
-
-.achievement.done{
- border:2px solid var(--main);
-}
-
-.leader{
- display:flex;
- justify-content:space-between;
- background:var(--panel);
- padding:13px;
- border-radius:12px;
- margin:7px 0;
+    background:var(--panel);
+    border-radius:18px;
+    padding:18px;
+    margin:10px 0;
 }
 
 .input{
- width:100%;
- padding:14px;
- border:0;
- border-radius:12px;
- margin:8px 0;
- font-size:18px;
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    margin:8px 0;
+    font-size:18px;
 }
 
 .avatar{
- width:100px;
- height:100px;
- border-radius:50%;
- margin:auto;
- display:flex;
- align-items:center;
- justify-content:center;
- background:var(--main);
- color:#062511;
- font-size:50px;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--main);
+    color:#062511;
+    font-size:50px;
 }
 
-/* WYGLĄD */
+/* ================= WYGLĄD ================= */
 
 .appearanceGrid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:14px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
 }
 
 .appearanceCard{
- background:var(--panel);
- padding:15px;
- border-radius:18px;
+    background:var(--panel);
+    padding:15px;
+    border-radius:18px;
 }
 
-.appearanceCard h3{
- margin-top:0;
+.wallGrid,
+.colorGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
 }
 
-.wallGrid,.colorGrid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:10px;
-}
-
-.wallButton,.colorButton{
- min-height:100px;
- border-radius:16px;
- color:white;
- font-size:18px;
- font-weight:bold;
- border:2px solid transparent;
+.wallButton,
+.colorButton{
+    min-height:100px;
+    border-radius:16px;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    border:2px solid transparent;
 }
 
 .wallButton.selected,
 .colorButton.selected{
- border:3px solid var(--main);
- box-shadow:0 0 15px var(--main);
+    border:3px solid var(--main);
+    box-shadow:0 0 15px var(--main);
 }
 
 .wall-grass-preview{
- background:linear-gradient(135deg,#021d0c,#08783b);
+    background:linear-gradient(135deg,#021d0c,#08783b);
 }
 
 .wall-night-preview{
- background:linear-gradient(180deg,#020617,#071b38);
+    background:linear-gradient(180deg,#020617,#071b38);
 }
 
 .wall-lava-preview{
- background:linear-gradient(135deg,#160000,#ff3b00,#4b0800);
+    background:linear-gradient(135deg,#160000,#ff3b00,#4b0800);
 }
 
 .wall-space-preview{
- background:radial-gradient(circle,#44248a,#02000c);
+    background:radial-gradient(circle,#44248a,#02000c);
 }
 
 .wall-black-preview{
- background:linear-gradient(135deg,#000,#111,#000);
+    background:linear-gradient(135deg,#000,#111,#000);
 }
 
-.color-green-preview{background:#4cff8b;color:#062511}
-.color-blue-preview{background:#42a5ff}
-.color-red-preview{background:#ff5757}
-.color-purple-preview{background:#c875ff}
-.color-gold-preview{background:#ffd34d;color:#302400}
+.color-green-preview{
+    background:#4cff8b;
+    color:#062511;
+}
+
+.color-blue-preview{
+    background:#42a5ff;
+}
+
+.color-red-preview{
+    background:#ff5757;
+}
+
+.color-purple-preview{
+    background:#c875ff;
+}
+
+.color-gold-preview{
+    background:#ffd34d;
+    color:#302400;
+}
+
+/* ================= SKLEP ================= */
+
+.shop{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--panel);
+    padding:15px;
+    border-radius:14px;
+    margin:8px 0;
+    gap:10px;
+}
+
+.buy{
+    padding:12px 18px;
+    border-radius:10px;
+    background:var(--main);
+    font-weight:bold;
+}
+
+.shopBalance{
+    text-align:center;
+    font-size:25px;
+    font-weight:bold;
+    color:var(--main);
+    margin:15px;
+}
+
+/* ================= OSIĄGNIĘCIA ================= */
+
+.achievement{
+    background:var(--panel);
+    padding:14px;
+    border-radius:14px;
+    margin:8px 0;
+}
+
+.achievement.done{
+    border:2px solid var(--main);
+}
+
+/* ================= RANKING ================= */
+
+.leader{
+    display:flex;
+    justify-content:space-between;
+    background:var(--panel);
+    padding:13px;
+    border-radius:12px;
+    margin:7px 0;
+}
+
+/* ================= WORLD ================= */
+
+.countryGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.country{
+    padding:15px 5px;
+    border-radius:14px;
+    background:var(--button);
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.country.locked{
+    opacity:.35;
+}
+
+.country.done{
+    border:2px solid var(--main);
+}
+
+/* ================= MOBILE ================= */
 
 @media(max-width:650px){
 
- .app{
-  margin:5px auto;
-  padding:14px;
- }
+    .app{
+        margin:5px auto;
+        padding:14px;
+    }
 
- .logo{
-  font-size:32px;
- }
+    .logo{
+        font-size:32px;
+    }
 
- .infoGrid{
-  grid-template-columns:1fr 1fr;
- }
+    .infoGrid{
+        grid-template-columns:1fr 1fr;
+    }
 
- .menu{
-  grid-template-columns:1fr;
- }
+    .menu{
+        grid-template-columns:1fr;
+    }
 
- .answers{
-  grid-template-columns:1fr;
- }
+    .answers{
+        grid-template-columns:1fr;
+    }
 
- .stats{
-  grid-template-columns:1fr 1fr;
- }
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
 
- .countryGrid{
-  grid-template-columns:1fr 1fr;
- }
+    .countryGrid{
+        grid-template-columns:1fr 1fr;
+    }
 
- .tools{
-  grid-template-columns:1fr;
- }
+    .tools{
+        grid-template-columns:1fr;
+    }
 
- .appearanceGrid{
-  grid-template-columns:1fr;
- }
-
+    .appearanceGrid{
+        grid-template-columns:1fr;
+    }
 }
 </style>
 </head>
@@ -535,11 +589,12 @@ button:hover{
 
 <div class="app">
 
-<!-- MENU -->
+<!-- ================= MENU ================= -->
 
 <section id="menu">
 
 <div class="logo">⚽ FOOTBALL QUIZ</div>
+
 <p class="sub">🌍 WORLD</p>
 
 <div class="profile">
@@ -560,10 +615,25 @@ button:hover{
 
 <div class="infoGrid">
 
-<div class="info">🏆<br><b id="best">0</b></div>
-<div class="info">🔥<br><b id="bestCombo">0</b></div>
-<div class="info">🎮<br><b id="games">0</b></div>
-<div class="info">🌍<br><b id="world">0%</b></div>
+<div class="info">
+🏆<br>
+<b id="best">0</b>
+</div>
+
+<div class="info">
+🔥<br>
+<b id="bestCombo">0</b>
+</div>
+
+<div class="info">
+🎮<br>
+<b id="games">0</b>
+</div>
+
+<div class="info">
+🌍<br>
+<b id="world">0%</b>
+</div>
 
 </div>
 
@@ -571,52 +641,92 @@ button:hover{
 
 <div class="menu">
 
-<button onclick="selectMode('classic')">⚽<br>KLASYCZNY</button>
+<button onclick="selectMode('classic')">
+⚽<br>KLASYCZNY
+</button>
 
-<button onclick="selectMode('players')">👤<br>ZGADNIJ PIŁKARZA</button>
+<button onclick="selectMode('players')">
+👤<br>ZGADNIJ PIŁKARZA
+</button>
 
-<button onclick="selectMode('clubs')">🏆<br>ZGADNIJ KLUB</button>
+<button onclick="selectMode('clubs')">
+🏆<br>ZGADNIJ KLUB
+</button>
 
-<button onclick="selectMode('stadiums')">🏟️<br>ZGADNIJ STADION</button>
+<button onclick="selectMode('stadiums')">
+🏟️<br>ZGADNIJ STADION
+</button>
 
-<button onclick="selectMode('countries')">🌍<br>REPREZENTACJE</button>
+<button onclick="selectMode('countries')">
+🌍<br>REPREZENTACJE
+</button>
 
-<button onclick="selectMode('stats')">📊<br>STATYSTYKI</button>
+<button onclick="selectMode('stats')">
+📊<br>STATYSTYKI
+</button>
 
-<button onclick="openWho()">🧩<br>KIM JESTEM?</button>
+<button onclick="openWho()">
+🧩<br>KIM JESTEM?
+</button>
 
-<button onclick="openCareer()">📰<br>ZGADNIJ PO KARIERZE</button>
+<button onclick="openCareer()">
+📰<br>ZGADNIJ PO KARIERZE
+</button>
 
-<button onclick="openMatch()">🏟️<br>ZGADNIJ MECZ</button>
+<button onclick="openMatch()">
+🏟️<br>ZGADNIJ MECZ
+</button>
 
-<button onclick="openSpeed()">⏱️<br>SPEED QUIZ</button>
+<button onclick="openSpeed()">
+⏱️<br>SPEED QUIZ
+</button>
 
-<button onclick="openSurvival()">❤️<br>SURVIVAL</button>
+<button onclick="openSurvival()">
+❤️<br>SURVIVAL
+</button>
 
-<button onclick="openTournament()">🏆<br>TURNIEJ</button>
+<button onclick="openTournament()">
+🏆<br>TURNIEJ
+</button>
 
-<button onclick="openTwo()">👥<br>2 GRACZY</button>
+<button onclick="openTwo()">
+👥<br>2 GRACZY
+</button>
 
-<button onclick="openWorld()">🌍<br>FOOTBALL WORLD</button>
+<button onclick="openWorld()">
+🌍<br>FOOTBALL WORLD
+</button>
 
-<button class="gold" onclick="daily()">📅<br>DAILY CHALLENGE</button>
+<button class="gold" onclick="daily()">
+📅<br>DAILY CHALLENGE
+</button>
 
 </div>
 
-<button class="next" onclick="openProfile()">👤 PROFIL</button>
+<button class="next" onclick="openProfile()">
+👤 PROFIL
+</button>
 
-<button class="next" onclick="openShop()">🛒 SKLEP</button>
+<button class="next" onclick="openShop()">
+🛒 SKLEP
+</button>
 
-<button class="next" onclick="openAchievements()">🏅 OSIĄGNIĘCIA</button>
+<button class="next" onclick="openAchievements()">
+🏅 OSIĄGNIĘCIA
+</button>
 
-<button class="next" onclick="openRanking()">🥇 RANKING</button>
+<button class="next" onclick="openRanking()">
+🥇 RANKING
+</button>
 
-<button class="next" onclick="openAppearance()">🎨 WYGLĄD</button>
+<button class="next" onclick="openAppearance()">
+🎨 WYGLĄD
+</button>
 
 </section>
 
 
-<!-- WYGLĄD -->
+<!-- ================= WYGLĄD ================= -->
 
 <section id="appearance" class="hidden">
 
@@ -663,7 +773,6 @@ onclick="setWallpaper('black',this)">
 
 </div>
 
-
 <div class="appearanceCard">
 
 <h3>🎨 KOLOR</h3>
@@ -701,23 +810,14 @@ onclick="setColor('gold',this)">
 
 </div>
 
-<div class="card">
-
-<h3>💡 Wskazówka</h3>
-
-<p>
-Jeśli obecny wygląd jest dla Ciebie zbyt mocny,
-spróbuj <b>🖤 Czerń</b> albo <b>🔵 Stadion nocą</b>.
-</p>
-
-</div>
-
-<button class="back" onclick="menu()">⬅️ WRÓĆ DO MENU</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ DO MENU
+</button>
 
 </section>
 
 
-<!-- PROFIL -->
+<!-- ================= PROFIL ================= -->
 
 <section id="profile" class="hidden">
 
@@ -727,10 +827,14 @@ spróbuj <b>🖤 Czerń</b> albo <b>🔵 Stadion nocą</b>.
 
 <div class="avatar">⚽</div>
 
-<input id="nameInput" class="input" maxlength="16"
+<input id="nameInput"
+class="input"
+maxlength="16"
 placeholder="Twój nick">
 
-<button class="next" onclick="saveName()">💾 ZAPISZ</button>
+<button class="next" onclick="saveName()">
+💾 ZAPISZ
+</button>
 
 <h2 id="profileName">Gracz</h2>
 
@@ -742,12 +846,14 @@ placeholder="Twój nick">
 
 </div>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- TRUDNOŚĆ -->
+<!-- ================= TRUDNOŚĆ ================= -->
 
 <section id="difficulty" class="hidden">
 
@@ -758,38 +864,55 @@ placeholder="Twój nick">
 <div class="difficulty">
 
 <button class="diff easy" onclick="start('easy')">
-🟢 ŁATWY<br><small>15 sekund</small>
+🟢 ŁATWY<br>
+<small>15 sekund</small>
 </button>
 
 <button class="diff medium" onclick="start('medium')">
-🟡 ŚREDNI<br><small>12 sekund</small>
+🟡 ŚREDNI<br>
+<small>12 sekund</small>
 </button>
 
 <button class="diff hard" onclick="start('hard')">
-🔴 TRUDNY<br><small>9 sekund</small>
+🔴 TRUDNY<br>
+<small>9 sekund</small>
 </button>
 
 <button class="diff elite" onclick="start('elite')">
-💎 ELITE<br><small>7 sekund • więcej XP</small>
+💎 ELITE<br>
+<small>7 sekund • więcej XP</small>
 </button>
 
 </div>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- GRA -->
+<!-- ================= GRA ================= -->
 
 <section id="game" class="hidden">
 
 <div class="stats">
 
-<div class="stat">❤️ <b id="lives">3</b></div>
-<div class="stat">🪙 <b id="gameCoins">0</b></div>
-<div class="stat">🔥 <b id="combo">0</b></div>
-<div class="stat">🏆 <b id="score">0</b></div>
+<div class="stat">
+❤️ <b id="lives">3</b>
+</div>
+
+<div class="stat">
+🪙 <b id="gameCoins">0</b>
+</div>
+
+<div class="stat">
+🔥 <b id="combo">0</b>
+</div>
+
+<div class="stat">
+🏆 <b id="score">0</b>
+</div>
 
 </div>
 
@@ -821,7 +944,8 @@ placeholder="Twój nick">
 
 </div>
 
-<button id="next" class="next hidden"
+<button id="next"
+class="next hidden"
 onclick="nextQuestion()">
 ➡️ NASTĘPNE
 </button>
@@ -829,28 +953,99 @@ onclick="nextQuestion()">
 </section>
 
 
-<!-- WYNIK -->
+<!-- ================= WYNIK ================= -->
 
 <section id="result" class="hidden">
 
 <div class="logo">🏆 KONIEC</div>
 
-<div id="finalScore" class="result">0</div>
+<div id="finalScore" class="result">
+0
+</div>
 
 <div class="card">
 
-<p>⭐ Zdobyte XP: <b id="finalXP">0</b></p>
-<p>🪙 Monety: <b id="finalCoins">0</b></p>
-<p>🔥 Najlepsze combo: <b id="finalCombo">0</b></p>
+<p>⭐ Zdobyte XP:
+<b id="finalXP">0</b>
+</p>
+
+<p>🪙 Monety:
+<b id="finalCoins">0</b>
+</p>
+
+<p>🔥 Najlepsze combo:
+<b id="finalCombo">0</b>
+</p>
 
 </div>
 
-<button class="next" onclick="menu()">🏠 MENU</button>
+<button class="next" onclick="menu()">
+🏠 MENU
+</button>
 
 </section>
 
 
-<!-- WORLD -->
+<!-- ================= SKLEP ================= -->
+
+<section id="shopPage" class="hidden">
+
+<div class="logo">🛒 SKLEP</div>
+
+<div class="shopBalance">
+🪙 <span id="shopCoins">0</span> MONET
+</div>
+
+<div class="shop">
+
+<div>
+❤️ Dodatkowe życie
+<br>
+<small>Koszt: 20 🪙</small>
+</div>
+
+<button class="buy" onclick="buy('life')">
+KUP
+</button>
+
+</div>
+
+<div class="shop">
+
+<div>
+⏱️ +3 sekundy
+<br>
+<small>Koszt: 30 🪙</small>
+</div>
+
+<button class="buy" onclick="buy('time')">
+KUP
+</button>
+
+</div>
+
+<div class="shop">
+
+<div>
+🔥 Combo Boost
+<br>
+<small>Koszt: 50 🪙</small>
+</div>
+
+<button class="buy" onclick="buy('boost')">
+KUP
+</button>
+
+</div>
+
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
+
+</section>
+
+
+<!-- ================= WORLD ================= -->
 
 <section id="worldPage" class="hidden">
 
@@ -863,49 +1058,14 @@ Odblokowane kraje:
 
 <div id="countries" class="countryGrid"></div>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- SKLEP -->
-
-<section id="shopPage" class="hidden">
-
-<div class="logo">🛒 SKLEP</div>
-
-<p class="sub">Masz 🪙 <b id="shopCoins">0</b></p>
-
-<div class="shop">
-
-<div>❤️ Dodatkowe życie<br><small>20 monet</small></div>
-
-<button class="buy" onclick="buy('life')">KUP</button>
-
-</div>
-
-<div class="shop">
-
-<div>⏱️ +3 sekundy<br><small>30 monet</small></div>
-
-<button class="buy" onclick="buy('time')">KUP</button>
-
-</div>
-
-<div class="shop">
-
-<div>🔥 Combo Boost<br><small>50 monet</small></div>
-
-<button class="buy" onclick="buy('boost')">KUP</button>
-
-</div>
-
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
-
-</section>
-
-
-<!-- OSIĄGNIĘCIA -->
+<!-- ================= OSIĄGNIĘCIA ================= -->
 
 <section id="achievements" class="hidden">
 
@@ -913,29 +1073,29 @@ Odblokowane kraje:
 
 <div id="achievementList"></div>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- RANKING -->
+<!-- ================= RANKING ================= -->
 
 <section id="ranking" class="hidden">
 
 <div class="logo">🥇 RANKING</div>
 
-<p class="sub">
-Ranking zapisuje najlepsze wyniki na tym urządzeniu.
-</p>
-
 <div id="rankingList"></div>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- KIM JESTEM -->
+<!-- ================= KIM JESTEM ================= -->
 
 <section id="who" class="hidden">
 
@@ -947,14 +1107,18 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 
 <div id="whoMessage" class="message"></div>
 
-<button class="next" onclick="newWho()">🔄 NOWA ZAGADKA</button>
+<button class="next" onclick="newWho()">
+🔄 NOWA ZAGADKA
+</button>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- KARIERA -->
+<!-- ================= KARIERA ================= -->
 
 <section id="career" class="hidden">
 
@@ -966,14 +1130,18 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 
 <div id="careerMessage" class="message"></div>
 
-<button class="next" onclick="newCareer()">🔄 NOWA ZAGADKA</button>
+<button class="next" onclick="newCareer()">
+🔄 NOWA ZAGADKA
+</button>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- MECZ -->
+<!-- ================= MECZ ================= -->
 
 <section id="match" class="hidden">
 
@@ -985,14 +1153,18 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 
 <div id="matchMessage" class="message"></div>
 
-<button class="next" onclick="newMatch()">🔄 NOWY MECZ</button>
+<button class="next" onclick="newMatch()">
+🔄 NOWY MECZ
+</button>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- SPEED -->
+<!-- ================= SPEED ================= -->
 
 <section id="speed" class="hidden">
 
@@ -1002,9 +1174,13 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 
 <h2>60 SEKUND</h2>
 
-<p>Wynik: <b id="speedScore">0</b></p>
+<p>Wynik:
+<b id="speedScore">0</b>
+</p>
 
-<p>Czas: <b id="speedTime">60</b></p>
+<p>Czas:
+<b id="speedTime">60</b>
+</p>
 
 </div>
 
@@ -1014,14 +1190,18 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 
 <div id="speedMessage" class="message"></div>
 
-<button class="next" onclick="startSpeed()">▶️ START</button>
+<button class="next" onclick="startSpeed()">
+▶️ START
+</button>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- SURVIVAL -->
+<!-- ================= SURVIVAL ================= -->
 
 <section id="survival" class="hidden">
 
@@ -1029,9 +1209,15 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 
 <div class="card">
 
-<p>❤️ Życia: <b id="survivalLives">3</b></p>
+<p>
+❤️ Życia:
+<b id="survivalLives">3</b>
+</p>
 
-<p>🏆 Wynik: <b id="survivalScore">0</b></p>
+<p>
+🏆 Wynik:
+<b id="survivalScore">0</b>
+</p>
 
 </div>
 
@@ -1041,14 +1227,18 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 
 <div id="survivalMessage" class="message"></div>
 
-<button class="next" onclick="startSurvival()">▶️ START</button>
+<button class="next" onclick="startSurvival()">
+▶️ START
+</button>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- TURNIEJ -->
+<!-- ================= TURNIEJ ================= -->
 
 <section id="tournament" class="hidden">
 
@@ -1058,7 +1248,10 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 
 <h2>Football Champions</h2>
 
-<p>Pokonaj kolejnych przeciwników i zostań mistrzem!</p>
+<p>
+Pokonaj kolejnych przeciwników
+i zostań mistrzem!
+</p>
 
 </div>
 
@@ -1066,14 +1259,18 @@ Ranking zapisuje najlepsze wyniki na tym urządzeniu.
 Kliknij START, aby rozpocząć.
 </div>
 
-<button class="next" onclick="startTournament()">▶️ START</button>
+<button class="next" onclick="startTournament()">
+▶️ START
+</button>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
 
-<!-- 2 GRACZY -->
+<!-- ================= 2 GRACZY ================= -->
 
 <section id="two" class="hidden">
 
@@ -1081,11 +1278,20 @@ Kliknij START, aby rozpocząć.
 
 <div class="card">
 
-<p>👤 Gracz 1: <b id="p1">0</b></p>
+<p>
+👤 Gracz 1:
+<b id="p1">0</b>
+</p>
 
-<p>👤 Gracz 2: <b id="p2">0</b></p>
+<p>
+👤 Gracz 2:
+<b id="p2">0</b>
+</p>
 
-<p>Teraz odpowiada: <b id="turn">Gracz 1</b></p>
+<p>
+Teraz odpowiada:
+<b id="turn">Gracz 1</b>
+</p>
 
 </div>
 
@@ -1095,9 +1301,13 @@ Kliknij START, aby rozpocząć.
 
 <div id="twoMessage" class="message"></div>
 
-<button class="next" onclick="startTwo()">▶️ START</button>
+<button class="next" onclick="startTwo()">
+▶️ START
+</button>
 
-<button class="back" onclick="menu()">⬅️ WRÓĆ</button>
+<button class="back" onclick="menu()">
+⬅️ WRÓĆ
+</button>
 
 </section>
 
@@ -1106,7 +1316,9 @@ Kliknij START, aby rozpocząć.
 
 <script>
 
-/* ================= DANE ================= */
+/* =====================================================
+   DANE
+===================================================== */
 
 const questions={
 
@@ -1153,53 +1365,52 @@ stats:[
 
 };
 
-const worldCountries=[
-["🇵🇱","Polska"],["🇪🇸","Hiszpania"],["🇧🇷","Brazylia"],
-["🇦🇷","Argentyna"],["🇫🇷","Francja"],["🇩🇪","Niemcy"],
-["🇬🇧","Anglia"],["🇮🇹","Włochy"],["🇵🇹","Portugalia"],
-["🇳🇱","Holandia"],["🇧🇪","Belgia"],["🇭🇷","Chorwacja"],
-["🇺🇾","Urugwaj"],["🇲🇽","Meksyk"],["🇯🇵","Japonia"],
-["🇲🇦","Maroko"],["🇨🇴","Kolumbia"],["🇨🇱","Chile"],
-["🇨🇭","Szwajcaria"],["🇹🇷","Turcja"]
-];
 
+/* =====================================================
+   ZAPIS GRY
+===================================================== */
 
-/* ================= ZAPIS ================= */
-
-let save=JSON.parse(localStorage.getItem("footballQuizSave"));
+let save=JSON.parse(
+    localStorage.getItem("footballQuizSave")
+);
 
 if(!save){
 
 save={
-name:"Gracz",
-level:1,
-xp:0,
-coins:50,
-best:0,
-combo:0,
-games:0,
-correct:0,
-wrong:0,
-world:[],
-achievements:[],
-ranking:[],
-life:0,
-time:0,
-boost:false,
-wallpaper:"grass",
-color:"green"
+    name:"Gracz",
+    level:1,
+    xp:0,
+    coins:50,
+    best:0,
+    combo:0,
+    games:0,
+    correct:0,
+    wrong:0,
+    world:[],
+    achievements:[],
+    ranking:[],
+    life:0,
+    time:0,
+    boost:false,
+    wallpaper:"grass",
+    color:"green"
 };
 
 }
 
+if(save.coins===undefined)save.coins=50;
+if(save.life===undefined)save.life=0;
+if(save.time===undefined)save.time=0;
+if(save.boost===undefined)save.boost=false;
 if(!save.wallpaper)save.wallpaper="grass";
 if(!save.color)save.color="green";
+
 
 function saveData(){
 
 localStorage.setItem(
-"footballQuizSave",
-JSON.stringify(save)
+    "footballQuizSave",
+    JSON.stringify(save)
 );
 
 update();
@@ -1207,7 +1418,9 @@ update();
 }
 
 
-/* ================= WYGLĄD ================= */
+/* =====================================================
+   WYGLĄD
+===================================================== */
 
 function applyAppearance(){
 
@@ -1217,12 +1430,12 @@ document.body.className=
 
 }
 
+
 function setWallpaper(w,button){
 
 save.wallpaper=w;
 
 applyAppearance();
-
 saveData();
 
 document.querySelectorAll(".wallButton")
@@ -1232,12 +1445,12 @@ button.classList.add("selected");
 
 }
 
+
 function setColor(c,button){
 
 save.color=c;
 
 applyAppearance();
-
 saveData();
 
 document.querySelectorAll(".colorButton")
@@ -1246,6 +1459,7 @@ document.querySelectorAll(".colorButton")
 button.classList.add("selected");
 
 }
+
 
 function openAppearance(){
 
@@ -1264,18 +1478,24 @@ let wall=document.querySelector(
 ".wall-"+save.wallpaper+"-preview"
 );
 
-if(wall)wall.classList.add("selected");
+if(wall){
+wall.classList.add("selected");
+}
 
 let color=document.querySelector(
 ".color-"+save.color+"-preview"
 );
 
-if(color)color.classList.add("selected");
+if(color){
+color.classList.add("selected");
+}
 
 }
 
 
-/* ================= EKRANY ================= */
+/* =====================================================
+   EKRANY
+===================================================== */
 
 function hide(){
 
@@ -1284,9 +1504,11 @@ document.querySelectorAll("section")
 
 }
 
+
 function menu(){
 
 clearInterval(interval);
+clearInterval(speedInterval);
 
 hide();
 
@@ -1298,7 +1520,9 @@ update();
 }
 
 
-/* ================= UPDATE ================= */
+/* =====================================================
+   UPDATE
+===================================================== */
 
 function update(){
 
@@ -1317,15 +1541,19 @@ document.getElementById("needed").innerText=needed;
 document.getElementById("xpBar").style.width=
 Math.min(100,save.xp/needed*100)+"%";
 
+let worldCount=save.world.length;
+
 document.getElementById("world").innerText=
 Math.round(
-save.world.length/worldCountries.length*100
+worldCount/20*100
 )+"%";
 
 }
 
 
-/* ================= PROFIL ================= */
+/* =====================================================
+   PROFIL
+===================================================== */
 
 function openProfile(){
 
@@ -1345,6 +1573,7 @@ document.getElementById("profileBest").innerText=save.best;
 
 }
 
+
 function saveName(){
 
 let n=document.getElementById("nameInput")
@@ -1361,7 +1590,9 @@ openProfile();
 }
 
 
-/* ================= QUIZ ================= */
+/* =====================================================
+   QUIZ
+===================================================== */
 
 let mode="";
 let list=[];
@@ -1374,6 +1605,7 @@ let gameCoins=0;
 let difficulty="easy";
 let seconds=15;
 let interval=null;
+let speedInterval=null;
 let answered=false;
 let fiftyUsed=false;
 let hintUsed=false;
@@ -1386,6 +1618,7 @@ stadiums:"🏟️ ZGADNIJ STADION",
 countries:"🌍 REPREZENTACJE",
 stats:"📊 STATYSTYKI"
 };
+
 
 function selectMode(m){
 
@@ -1401,6 +1634,7 @@ document.getElementById("modeTitle")
 
 }
 
+
 function start(diff){
 
 difficulty=diff;
@@ -1410,9 +1644,17 @@ diff==="easy"?15:
 diff==="medium"?12:
 diff==="hard"?9:7;
 
+/*
+   BONUS CZASU ZE SKLEPU
+*/
 seconds+=save.time;
 
-list=questions[mode].map(x=>x);
+/*
+   BONUS CZASU ZOSTAJE ZUŻYTY
+*/
+save.time=0;
+
+list=[...questions[mode]];
 
 list.sort(()=>Math.random()-.5);
 
@@ -1423,7 +1665,12 @@ bestCombo=0;
 gameCoins=0;
 lives=3+save.life;
 
+/*
+   BONUS ŻYCIA ZOSTAJE ZUŻYTY
+*/
 save.life=0;
+
+saveData();
 
 hide();
 
@@ -1433,6 +1680,7 @@ document.getElementById("game")
 showQuestion();
 
 }
+
 
 function showQuestion(){
 
@@ -1444,9 +1692,8 @@ hintUsed=false;
 
 let q=list[current];
 
-document.getElementById("picture").innerHTML="";
-
-document.getElementById("question").innerText=q[0];
+document.getElementById("question")
+.innerText=q[0];
 
 let arr=[...q[1]];
 
@@ -1469,13 +1716,15 @@ box.appendChild(b);
 
 });
 
-document.getElementById("message").innerText="";
+document.getElementById("message")
+.innerText="";
 
 document.getElementById("next")
 .classList.add("hidden");
 
 document.getElementById("progressBar")
-.style.width=(current/list.length*100)+"%";
+.style.width=
+(current/list.length*100)+"%";
 
 startTimer();
 
@@ -1483,17 +1732,20 @@ gameUpdate();
 
 }
 
+
 function startTimer(){
 
 let t=seconds;
 
-document.getElementById("timer").innerText=t;
+document.getElementById("timer")
+.innerText=t;
 
 interval=setInterval(()=>{
 
 t--;
 
-document.getElementById("timer").innerText=t;
+document.getElementById("timer")
+.innerText=t;
 
 if(t<=0){
 
@@ -1506,6 +1758,7 @@ timeout();
 },1000);
 
 }
+
 
 function answer(button,a){
 
@@ -1522,8 +1775,9 @@ document.querySelectorAll(".answer")
 
 b.disabled=true;
 
-if(b.innerText===q[2])
+if(b.innerText===q[2]){
 b.classList.add("correct");
+}
 
 });
 
@@ -1542,9 +1796,16 @@ difficulty==="hard"?3:5;
 
 if(combo>=3)points++;
 if(combo>=5)points+=2;
+
 if(save.boost)points++;
 
 score+=points;
+
+/*
+   MONETY Z QUIZU
+   Są trzymane osobno jako gameCoins,
+   a po zakończeniu quizu trafiają do save.coins.
+*/
 gameCoins+=points;
 
 save.correct++;
@@ -1552,7 +1813,8 @@ save.correct++;
 addXP(points*5);
 
 document.getElementById("message")
-.innerText="✅ DOBRZE! +"+points+" pkt";
+.innerText=
+"✅ DOBRZE! +"+points+" pkt";
 
 }else{
 
@@ -1585,6 +1847,7 @@ document.getElementById("next")
 
 }
 
+
 function timeout(){
 
 if(answered)return;
@@ -1602,13 +1865,15 @@ document.querySelectorAll(".answer")
 
 b.disabled=true;
 
-if(b.innerText===q[2])
+if(b.innerText===q[2]){
 b.classList.add("correct");
+}
 
 });
 
 document.getElementById("message")
-.innerText="⏰ CZAS! Poprawna: "+q[2];
+.innerText=
+"⏰ CZAS! Poprawna: "+q[2];
 
 gameUpdate();
 
@@ -1625,6 +1890,7 @@ document.getElementById("next")
 
 }
 
+
 function nextQuestion(){
 
 current++;
@@ -1640,14 +1906,23 @@ showQuestion();
 
 }
 
+
 function gameUpdate(){
 
-document.getElementById("lives").innerText=lives;
-document.getElementById("gameCoins").innerText=gameCoins;
-document.getElementById("combo").innerText=combo;
-document.getElementById("score").innerText=score;
+document.getElementById("lives")
+.innerText=lives;
+
+document.getElementById("gameCoins")
+.innerText=gameCoins;
+
+document.getElementById("combo")
+.innerText=combo;
+
+document.getElementById("score")
+.innerText=score;
 
 }
+
 
 function addXP(x){
 
@@ -1656,25 +1931,36 @@ save.xp+=x;
 while(save.xp>=save.level*100){
 
 save.xp-=save.level*100;
+
 save.level++;
 
 }
 
 }
 
+
+/* =====================================================
+   KONIEC QUIZU
+===================================================== */
+
 function endGame(){
 
 clearInterval(interval);
 
-save.games++;
-
+/*
+   ZAPISUJEMY MONETY TYLKO RAZ
+*/
 save.coins+=gameCoins;
 
-if(score>save.best)
-save.best=score;
+save.games++;
 
-if(bestCombo>save.combo)
+if(score>save.best){
+save.best=score;
+}
+
+if(bestCombo>save.combo){
 save.combo=bestCombo;
+}
 
 addXP(score);
 
@@ -1688,10 +1974,17 @@ checkAchievements();
 
 saveData();
 
-document.getElementById("finalScore").innerText=score;
-document.getElementById("finalXP").innerText=score;
-document.getElementById("finalCoins").innerText=gameCoins;
-document.getElementById("finalCombo").innerText=bestCombo;
+document.getElementById("finalScore")
+.innerText=score;
+
+document.getElementById("finalXP")
+.innerText=score;
+
+document.getElementById("finalCoins")
+.innerText=gameCoins;
+
+document.getElementById("finalCombo")
+.innerText=bestCombo;
 
 hide();
 
@@ -1701,7 +1994,9 @@ document.getElementById("result")
 }
 
 
-/* ================= POWERUP ================= */
+/* =====================================================
+   50/50
+===================================================== */
 
 function fifty(){
 
@@ -1710,27 +2005,39 @@ if(answered||fiftyUsed)return;
 if(gameCoins<3){
 
 document.getElementById("message")
-.innerText="🪙 Potrzebujesz 3 monet.";
+.innerText=
+"🪙 Potrzebujesz 3 monet.";
 
 return;
 
 }
 
 gameCoins-=3;
+
 fiftyUsed=true;
 
 let correct=list[current][2];
 
-let wrong=[...document.querySelectorAll(".answer")]
+let wrong=[
+    ...document.querySelectorAll(".answer")
+]
 .filter(x=>x.innerText!==correct);
 
-wrong.sort(()=>Math.random()-.5)
+wrong
+.sort(()=>Math.random()-.5)
 .slice(0,2)
-.forEach(x=>x.style.visibility="hidden");
+.forEach(x=>{
+x.style.visibility="hidden";
+});
 
 gameUpdate();
 
 }
+
+
+/* =====================================================
+   PODPOWIEDŹ
+===================================================== */
 
 function hint(){
 
@@ -1739,24 +2046,177 @@ if(answered||hintUsed)return;
 if(gameCoins<2){
 
 document.getElementById("message")
-.innerText="🪙 Potrzebujesz 2 monet.";
+.innerText=
+"🪙 Potrzebujesz 2 monet.";
 
 return;
 
 }
 
 gameCoins-=2;
+
 hintUsed=true;
 
 document.getElementById("message")
-.innerText="💡 "+list[current][3];
+.innerText=
+"💡 "+list[current][3];
 
 gameUpdate();
 
 }
 
 
-/* ================= WORLD ================= */
+/* =====================================================
+   SKLEP — POPRAWIONY
+===================================================== */
+
+function openShop(){
+
+hide();
+
+document.getElementById("shopPage")
+.classList.remove("hidden");
+
+document.getElementById("shopCoins")
+.innerText=save.coins;
+
+}
+
+
+function buy(type){
+
+/*
+   SERCE
+*/
+if(type==="life"){
+
+if(save.coins>=20){
+
+save.coins-=20;
+
+save.life++;
+
+alert(
+"❤️ Kupiono dodatkowe życie!\n"+
+"Pozostało monet: "+save.coins
+);
+
+}else{
+
+alert(
+"❌ Masz za mało monet!\n"+
+"Potrzebujesz 20 🪙."
+);
+
+}
+
+}
+
+
+/*
+   CZAS
+*/
+else if(type==="time"){
+
+if(save.coins>=30){
+
+save.coins-=30;
+
+save.time+=3;
+
+alert(
+"⏱️ Kupiono +3 sekundy!\n"+
+"Pozostało monet: "+save.coins
+);
+
+}else{
+
+alert(
+"❌ Masz za mało monet!\n"+
+"Potrzebujesz 30 🪙."
+);
+
+}
+
+}
+
+
+/*
+   BOOST
+*/
+else if(type==="boost"){
+
+if(save.boost){
+
+alert(
+"🔥 Combo Boost jest już aktywny!"
+);
+
+return;
+
+}
+
+if(save.coins>=50){
+
+save.coins-=50;
+
+save.boost=true;
+
+alert(
+"🔥 Kupiono Combo Boost!\n"+
+"Pozostało monet: "+save.coins
+);
+
+}else{
+
+alert(
+"❌ Masz za mało monet!\n"+
+"Potrzebujesz 50 🪙."
+);
+
+}
+
+}
+
+
+/*
+   ZAPIS
+*/
+saveData();
+
+document.getElementById("shopCoins")
+.innerText=save.coins;
+
+}
+
+
+/* =====================================================
+   WORLD
+===================================================== */
+
+const worldCountries=[
+["🇵🇱","Polska"],
+["🇪🇸","Hiszpania"],
+["🇧🇷","Brazylia"],
+["🇦🇷","Argentyna"],
+["🇫🇷","Francja"],
+["🇩🇪","Niemcy"],
+["🇬🇧","Anglia"],
+["🇮🇹","Włochy"],
+["🇵🇹","Portugalia"],
+["🇳🇱","Holandia"],
+["🇧🇪","Belgia"],
+["🇭🇷","Chorwacja"],
+["🇺🇾","Urugwaj"],
+["🇲🇽","Meksyk"],
+["🇯🇵","Japonia"],
+["🇲🇦","Maroko"],
+["🇨🇴","Kolumbia"],
+["🇨🇱","Chile"],
+["🇨🇭","Szwajcaria"],
+["🇹🇷","Turcja"]
+];
+
 
 function openWorld(){
 
@@ -1768,6 +2228,7 @@ document.getElementById("worldPage")
 renderWorld();
 
 }
+
 
 function renderWorld(){
 
@@ -1786,8 +2247,11 @@ worldCountries.forEach((c,i)=>{
 
 let b=document.createElement("button");
 
-let unlocked=i===0||save.world.includes(i);
-let done=save.world.includes(i);
+let unlocked=
+i===0||save.world.includes(i);
+
+let done=
+save.world.includes(i);
 
 b.className=
 "country "+
@@ -1795,14 +2259,17 @@ b.className=
 (done?"done":"");
 
 b.innerHTML=
-c[0]+"<br>"+c[1]+
+c[0]+"<br>"+
+c[1]+
 (done?"<br>✅":"<br>🔒");
 
 b.onclick=()=>{
 
 if(!unlocked){
 
-alert("🔒 Najpierw odblokuj wcześniejszy kraj!");
+alert(
+"🔒 Najpierw odblokuj wcześniejszy kraj!"
+);
 
 return;
 
@@ -1831,83 +2298,9 @@ box.appendChild(b);
 }
 
 
-/* ================= SKLEP ================= */
-
-function openShop(){
-
-hide();
-
-document.getElementById("shopPage")
-.classList.remove("hidden");
-
-document.getElementById("shopCoins")
-.innerText=save.coins;
-
-}
-
-function buy(type){
-
-if(type==="life"){
-
-if(save.coins<20){
-
-alert("❌ Za mało monet!");
-
-return;
-
-}
-
-save.coins-=20;
-save.life++;
-
-}
-
-if(type==="time"){
-
-if(save.coins<30){
-
-alert("❌ Za mało monet!");
-
-return;
-
-}
-
-save.coins-=30;
-save.time+=3;
-
-}
-
-if(type==="boost"){
-
-if(save.boost){
-
-alert("🔥 Masz już Combo Boost!");
-
-return;
-
-}
-
-if(save.coins<50){
-
-alert("❌ Za mało monet!");
-
-return;
-
-}
-
-save.coins-=50;
-save.boost=true;
-
-}
-
-saveData();
-
-openShop();
-
-}
-
-
-/* ================= OSIĄGNIĘCIA ================= */
+/* =====================================================
+   OSIĄGNIĘCIA
+===================================================== */
 
 const achievements=[
 
@@ -1922,20 +2315,35 @@ const achievements=[
 
 ];
 
+
 function checkAchievements(){
 
-if(save.games>=1)unlock("first");
-if(save.games>=10)unlock("ten");
-if(save.best>=10)unlock("score10");
-if(save.best>=30)unlock("score30");
-if(save.combo>=5)unlock("combo5");
-if(save.level>=5)unlock("level5");
-if(save.level>=10)unlock("level10");
+if(save.games>=1)
+unlock("first");
+
+if(save.games>=10)
+unlock("ten");
+
+if(save.best>=10)
+unlock("score10");
+
+if(save.best>=30)
+unlock("score30");
+
+if(save.combo>=5)
+unlock("combo5");
+
+if(save.level>=5)
+unlock("level5");
+
+if(save.level>=10)
+unlock("level10");
 
 if(save.world.length>=worldCountries.length)
 unlock("world");
 
 }
+
 
 function unlock(id){
 
@@ -1943,6 +2351,7 @@ if(!save.achievements.includes(id))
 save.achievements.push(id);
 
 }
+
 
 function openAchievements(){
 
@@ -1953,15 +2362,18 @@ hide();
 document.getElementById("achievements")
 .classList.remove("hidden");
 
-let box=document.getElementById("achievementList");
+let box=
+document.getElementById("achievementList");
 
 box.innerHTML="";
 
 achievements.forEach(a=>{
 
-let done=save.achievements.includes(a[0]);
+let done=
+save.achievements.includes(a[0]);
 
-let d=document.createElement("div");
+let d=
+document.createElement("div");
 
 d.className=
 "achievement "+(done?"done":"");
@@ -1969,7 +2381,9 @@ d.className=
 d.innerHTML=
 "<b>"+a[1]+"</b><br>"+
 a[2]+"<br>"+
-(done?"✅ ODBLOKOWANE":"🔒 ZABLOKOWANE");
+(done?
+"✅ ODBLOKOWANE":
+"🔒 ZABLOKOWANE");
 
 box.appendChild(d);
 
@@ -1978,7 +2392,9 @@ box.appendChild(d);
 }
 
 
-/* ================= RANKING ================= */
+/* =====================================================
+   RANKING
+===================================================== */
 
 function openRanking(){
 
@@ -1987,7 +2403,8 @@ hide();
 document.getElementById("ranking")
 .classList.remove("hidden");
 
-let box=document.getElementById("rankingList");
+let box=
+document.getElementById("rankingList");
 
 box.innerHTML="";
 
@@ -2002,7 +2419,8 @@ return;
 
 save.ranking.forEach((x,i)=>{
 
-let d=document.createElement("div");
+let d=
+document.createElement("div");
 
 d.className="leader";
 
@@ -2017,7 +2435,9 @@ box.appendChild(d);
 }
 
 
-/* ================= KIM JESTEM ================= */
+/* =====================================================
+   KIM JESTEM
+===================================================== */
 
 const whoData=[
 
@@ -2041,6 +2461,7 @@ const whoData=[
 
 ];
 
+
 function openWho(){
 
 hide();
@@ -2052,10 +2473,15 @@ newWho();
 
 }
 
+
 function newWho(){
 
 let x=
-whoData[Math.floor(Math.random()*whoData.length)];
+whoData[
+Math.floor(
+Math.random()*whoData.length
+)
+];
 
 document.getElementById("whoText")
 .innerText=x[0];
@@ -2069,26 +2495,37 @@ x[1],
 
 }
 
-function makeAnswers(id,arr,correct,msgId){
 
-let box=document.getElementById(id);
+function makeAnswers(
+id,
+arr,
+correct,
+msgId
+){
+
+let box=
+document.getElementById(id);
 
 box.innerHTML="";
 
 document.getElementById(msgId)
 .innerText="";
 
-arr.sort(()=>Math.random()-.5)
+[...arr]
+.sort(()=>Math.random()-.5)
 .forEach(a=>{
 
-let b=document.createElement("button");
+let b=
+document.createElement("button");
 
 b.className="answer";
 b.innerText=a;
 
 b.onclick=()=>{
 
-document.querySelectorAll("#"+id+" .answer")
+document.querySelectorAll(
+"#"+id+" .answer"
+)
 .forEach(x=>x.disabled=true);
 
 if(a===correct){
@@ -2121,7 +2558,9 @@ box.appendChild(b);
 }
 
 
-/* ================= KARIERA ================= */
+/* =====================================================
+   KARIERA
+===================================================== */
 
 const careerData=[
 
@@ -2145,6 +2584,7 @@ const careerData=[
 
 ];
 
+
 function openCareer(){
 
 hide();
@@ -2156,13 +2596,19 @@ newCareer();
 
 }
 
+
 function newCareer(){
 
 let x=
-careerData[Math.floor(Math.random()*careerData.length)];
+careerData[
+Math.floor(
+Math.random()*careerData.length
+)
+];
 
 document.getElementById("careerText")
-.innerHTML="<b>📰 Kariera:</b><br><br>"+x[0];
+.innerHTML=
+"<b>📰 Kariera:</b><br><br>"+x[0];
 
 makeAnswers(
 "careerAnswers",
@@ -2174,7 +2620,9 @@ x[1],
 }
 
 
-/* ================= MECZ ================= */
+/* =====================================================
+   MECZ
+===================================================== */
 
 const matchData=[
 
@@ -2198,6 +2646,7 @@ const matchData=[
 
 ];
 
+
 function openMatch(){
 
 hide();
@@ -2209,10 +2658,15 @@ newMatch();
 
 }
 
+
 function newMatch(){
 
 let x=
-matchData[Math.floor(Math.random()*matchData.length)];
+matchData[
+Math.floor(
+Math.random()*matchData.length
+)
+];
 
 document.getElementById("matchText")
 .innerHTML=x[0];
@@ -2227,11 +2681,13 @@ x[1],
 }
 
 
-/* ================= SPEED ================= */
+/* =====================================================
+   SPEED QUIZ
+===================================================== */
 
-let speedInterval=null;
 let speedTime=60;
 let speedScore=0;
+
 
 function openSpeed(){
 
@@ -2241,6 +2697,7 @@ document.getElementById("speed")
 .classList.remove("hidden");
 
 }
+
 
 function startSpeed(){
 
@@ -2257,7 +2714,8 @@ document.getElementById("speedTime")
 
 speedQuestion();
 
-speedInterval=setInterval(()=>{
+speedInterval=
+setInterval(()=>{
 
 speedTime--;
 
@@ -2269,7 +2727,8 @@ if(speedTime<=0){
 clearInterval(speedInterval);
 
 alert(
-"⏱️ Koniec! Wynik: "+speedScore
+"⏱️ Koniec! Wynik: "+
+speedScore
 );
 
 }
@@ -2278,13 +2737,18 @@ alert(
 
 }
 
+
 function speedQuestion(){
 
-let q=questions.classic[
-Math.floor(Math.random()*questions.classic.length)
+let q=
+questions.classic[
+Math.floor(
+Math.random()*questions.classic.length
+)
 ];
 
-let box=document.getElementById("speedAnswers");
+let box=
+document.getElementById("speedAnswers");
 
 document.getElementById("speedQuestion")
 .innerText=q[0];
@@ -2294,10 +2758,12 @@ document.getElementById("speedMessage")
 
 box.innerHTML="";
 
-q[1].sort(()=>Math.random()-.5)
+[...q[1]]
+.sort(()=>Math.random()-.5)
 .forEach(a=>{
 
-let b=document.createElement("button");
+let b=
+document.createElement("button");
 
 b.className="answer";
 b.innerText=a;
@@ -2313,6 +2779,7 @@ document.getElementById("speedScore")
 
 }
 
+if(speedTime>0)
 speedQuestion();
 
 };
@@ -2324,10 +2791,13 @@ box.appendChild(b);
 }
 
 
-/* ================= SURVIVAL ================= */
+/* =====================================================
+   SURVIVAL
+===================================================== */
 
 let survivalLives=3;
 let survivalScore=0;
+
 
 function openSurvival(){
 
@@ -2337,6 +2807,7 @@ document.getElementById("survival")
 .classList.remove("hidden");
 
 }
+
 
 function startSurvival(){
 
@@ -2349,13 +2820,18 @@ updateSurvival();
 
 }
 
+
 function survivalQuestion(){
 
-let q=questions.classic[
-Math.floor(Math.random()*questions.classic.length)
+let q=
+questions.classic[
+Math.floor(
+Math.random()*questions.classic.length
+)
 ];
 
-let box=document.getElementById("survivalAnswers");
+let box=
+document.getElementById("survivalAnswers");
 
 document.getElementById("survivalQuestion")
 .innerText=q[0];
@@ -2365,10 +2841,12 @@ document.getElementById("survivalMessage")
 
 box.innerHTML="";
 
-q[1].sort(()=>Math.random()-.5)
+[...q[1]]
+.sort(()=>Math.random()-.5)
 .forEach(a=>{
 
-let b=document.createElement("button");
+let b=
+document.createElement("button");
 
 b.className="answer";
 b.innerText=a;
@@ -2390,7 +2868,8 @@ updateSurvival();
 if(survivalLives<=0){
 
 alert(
-"❤️ KONIEC SURVIVALU!\nWynik: "+survivalScore
+"❤️ KONIEC SURVIVALU!\n"+
+"Wynik: "+survivalScore
 );
 
 }else{
@@ -2407,6 +2886,7 @@ box.appendChild(b);
 
 }
 
+
 function updateSurvival(){
 
 document.getElementById("survivalLives")
@@ -2418,9 +2898,9 @@ document.getElementById("survivalScore")
 }
 
 
-/* ================= TURNIEJ ================= */
-
-let tournamentRound=0;
+/* =====================================================
+   TURNIEJ
+===================================================== */
 
 function openTournament(){
 
@@ -2431,14 +2911,12 @@ document.getElementById("tournament")
 
 }
 
+
 function startTournament(){
 
-tournamentRound=1;
-
-let rounds=4;
 let won=0;
 
-for(let i=0;i<rounds;i++){
+for(let i=0;i<4;i++){
 
 if(Math.random()>.35)
 won++;
@@ -2470,11 +2948,14 @@ document.getElementById("tournamentText")
 }
 
 
-/* ================= 2 GRACZY ================= */
+/* =====================================================
+   2 GRACZY
+===================================================== */
 
 let twoScore1=0;
 let twoScore2=0;
 let twoTurn=1;
+
 
 function openTwo(){
 
@@ -2484,6 +2965,7 @@ document.getElementById("two")
 .classList.remove("hidden");
 
 }
+
 
 function startTwo(){
 
@@ -2495,10 +2977,14 @@ twoQuestion();
 
 }
 
+
 function twoQuestion(){
 
-let q=questions.classic[
-Math.floor(Math.random()*questions.classic.length)
+let q=
+questions.classic[
+Math.floor(
+Math.random()*questions.classic.length
+)
 ];
 
 document.getElementById("twoQuestion")
@@ -2512,16 +2998,21 @@ document.getElementById("p2")
 
 document.getElementById("turn")
 .innerText=
-twoTurn===1?"Gracz 1":"Gracz 2";
+twoTurn===1?
+"Gracz 1":
+"Gracz 2";
 
-let box=document.getElementById("twoAnswers");
+let box=
+document.getElementById("twoAnswers");
 
 box.innerHTML="";
 
-q[1].sort(()=>Math.random()-.5)
+[...q[1]]
+.sort(()=>Math.random()-.5)
 .forEach(a=>{
 
-let b=document.createElement("button");
+let b=
+document.createElement("button");
 
 b.className="answer";
 b.innerText=a;
@@ -2530,10 +3021,11 @@ b.onclick=()=>{
 
 if(a===q[2]){
 
-if(twoTurn===1)
+if(twoTurn===1){
 twoScore1++;
-else
+}else{
 twoScore2++;
+}
 
 }
 
@@ -2551,12 +3043,16 @@ box.appendChild(b);
 }
 
 
-/* ================= DAILY ================= */
+/* =====================================================
+   DAILY
+===================================================== */
 
 function daily(){
 
 let today=
-new Date().toISOString().slice(0,10);
+new Date()
+.toISOString()
+.slice(0,10);
 
 if(
 localStorage.getItem("footballDaily")
@@ -2583,7 +3079,9 @@ start("elite");
 }
 
 
-/* ================= START ================= */
+/* =====================================================
+   START
+===================================================== */
 
 applyAppearance();
 update();
