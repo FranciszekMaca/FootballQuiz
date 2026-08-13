@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Football Quiz 5.2</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #03150a, #087a3d);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 92%;
+    max-width: 700px;
+    background: #10251a;
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0 0 35px black;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    text-align: center;
+    color: #39ff7a;
+    font-size: 40px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #bde8ca;
+}
+
+.menu-button,
+.difficulty-button {
+    width: 100%;
+    padding: 18px;
+    margin: 9px 0;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menu-button {
+    background: #168a46;
+}
+
+.menu-button:hover {
+    background: #22b85d;
+}
+
+.easy {
+    background: #168a46;
+}
+
+.medium {
+    background: #a47713;
+}
+
+.hard {
+    background: #a82c2c;
+}
+
+.back {
+    background: #37483e;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    background: #193c28;
+    padding: 13px;
+    border-radius: 13px;
+}
+
+.progress {
+    height: 10px;
+    background: #294032;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#progress {
+    height: 10px;
+    width: 0%;
+    background: #39ff7a;
+    border-radius: 10px;
+}
+
+#timer {
+    text-align: center;
+    margin: 12px;
+    font-size: 19px;
+}
+
+#question {
+    text-align: center;
+    min-height: 60px;
+}
+
+.answer {
+    width: 100%;
+    padding: 16px;
+    margin: 7px 0;
+    border: none;
+    border-radius: 12px;
+    background: #1c5735;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.answer:hover {
+    background: #287b4b;
+}
+
+.answer:disabled {
+    cursor: default;
+}
+
+.correct {
+    background: #079943 !important;
+}
+
+.wrong {
+    background: #c52f2f !important;
+}
+
+#message {
+    text-align: center;
+    min-height: 30px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.next,
+.tool {
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.next {
+    width: 100%;
+    margin-top: 10px;
+    background: #39ff7a;
+    color: #062012;
+    font-size: 18px;
+}
+
+.tools {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.tool {
+    flex: 1;
+    background: #315b43;
+    color: white;
+}
+
+#hint {
+    background: #263d2d;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.player-image {
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 15px auto;
+    border-radius: 20px;
+    border: 4px solid #39ff7a;
+    background: #17271d;
+}
+
+.big-score {
+    text-align: center;
+    font-size: 42px;
+    color: #39ff7a;
+}
+
+.small {
+    text-align: center;
+    color: #bde8ca;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ================= MENU ================= -->
+
+<div id="menu">
+
+<h1>⚽ FOOTBALL QUIZ</h1>
+
+<p class="subtitle">
+🔥 Wersja 5.2
+</p>
+
+<button class="menu-button" onclick="chooseDifficulty('classic')">
+⚽ KLASYCZNY QUIZ
+</button>
+
+<button class="menu-button" onclick="chooseDifficulty('players')">
+👤 ZGADNIJ PIŁKARZA
+</button>
+
+<button class="menu-button" onclick="chooseDifficulty('clubs')">
+🏟️ KLUBY I STADIONY
+</button>
+
+<button class="menu-button" onclick="chooseDifficulty('countries')">
+🌍 REPREZENTACJE
+</button>
+
+<p class="small">
+🏆 Rekord:
+<span id="record">0</span>
+</p>
+
+</div>
+
+
+<!-- ================= TRUDNOŚĆ ================= -->
+
+<div id="difficulty" class="hidden">
+
+<h1>🎯 POZIOM TRUDNOŚCI</h1>
+
+<h2 id="difficultyTitle"></h2>
+
+<p class="small">
+Wybierz poziom:
+</p>
+
+<button class="difficulty-button easy"
+onclick="startGame('easy')">
+🟢 ŁATWY
+<br>
+<small>Proste pytania • 15 sekund</small>
+</button>
+
+<button class="difficulty-button medium"
+onclick="startGame('medium')">
+🟡 ŚREDNI
+<br>
+<small>Trudniejsze pytania • 12 sekund</small>
+</button>
+
+<button class="difficulty-button hard"
+onclick="startGame('hard')">
+🔴 TRUDNY
+<br>
+<small>Bardzo trudne pytania • 8 sekund</small>
+</button>
+
+<button class="difficulty-button back"
+onclick="backToMenu()">
+⬅️ Wróć
+</button>
+
+</div>
+
+
+<!-- ================= GRA ================= -->
+
+<div id="game" class="hidden">
+
+<div class="stats">
+
+<span>❤️ <b id="lives">3</b></span>
+<span>🪙 <b id="coins">0</b></span>
+<span>🔥 x<b id="combo">0</b></span>
+<span>🏆 <b id="score">0</b></span>
+
+</div>
+
+<div class="progress">
+<div id="progress"></div>
+</div>
+
+<div id="timer">
+⏱️ 15
+</div>
+
+<div id="picture"></div>
+
+<h2 id="question"></h2>
+
+<div id="answers"></div>
+
+<p id="message"></p>
+
+<div id="hint" class="hidden"></div>
+
+<div class="tools">
+
+<button class="tool" onclick="fiftyFifty()">
+🎯 50/50
+</button>
+
+<button class="tool" onclick="showHint()">
+💡 Podpowiedź
+</button>
+
+</div>
+
+<button id="next" class="next hidden" onclick="nextQuestion()">
+Następne pytanie ➡️
+</button>
+
+</div>
+
+
+<!-- ================= KONIEC ================= -->
+
+<div id="end" class="hidden">
+
+<h1>🏆 KONIEC!</h1>
+
+<p class="big-score">
+<span id="finalScore">0</span> pkt
+</p>
+
+<h2>
+🪙 <span id="finalCoins">0</span> monet
+</h2>
+
+<h2>
+🏆 Rekord: <span id="finalRecord">0</span>
+</h2>
+
+<button class="next" onclick="backToMenu()">
+🏠 Wróć do menu
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   PYTANIA ŁATWE
+================================================== */
+
+const easy = {
+
+classic: [
+
+{
+q:"Kto wygrał mundial w 2022 roku?",
+a:["Argentyna","Francja","Brazylia","Niemcy"],
+c:"Argentyna",
+h:"Lionel Messi został mistrzem świata."
+},
+
+{
+q:"Kto jest znany jako CR7?",
+a:["Lionel Messi","Cristiano Ronaldo","Neymar","Mbappé"],
+c:"Cristiano Ronaldo",
+h:"CR + numer 7."
+},
+
+{
+q:"Ilu zawodników jednej drużyny jest na boisku?",
+a:["9","10","11","12"],
+c:"11",
+h:"Jest ich więcej niż dziesięciu."
+},
+
+{
+q:"W jakim klubie gra Robert Lewandowski?",
+a:["Real Madryt","FC Barcelona","Liverpool","Chelsea"],
+c:"FC Barcelona",
+h:"Hiszpański klub z Barcelony."
+}
+
+],
+
+players: [
+
+{
+name:"Lionel Messi",
+q:"Kto to jest?",
+a:["Lionel Messi","Neymar","Mbappé","Modrić"],
+c:"Lionel Messi",
+h:"Mistrz świata 2022."
+},
+
+{
+name:"Cristiano Ronaldo",
+q:"Kto to jest?",
+a:["Cristiano Ronaldo","Bruno Fernandes","Pepe","Salah"],
+c:"Cristiano Ronaldo",
+h:"CR7."
+},
+
+{
+name:"Neymar",
+q:"Kto to jest?",
+a:["Neymar","Vinícius Jr.","Rodrygo","Casemiro"],
+c:"Neymar",
+h:"Brazylijski gwiazdor."
+},
+
+{
+name:"Kylian Mbappé",
+q:"Kto to jest?",
+a:["Kylian Mbappé","Benzema","Griezmann","Dembélé"],
+c:"Kylian Mbappé",
+h:"Francuski mistrz świata."
+}
+
+],
+
+clubs: [
+
+{
+q:"Na jakim stadionie gra Liverpool?",
+a:["Anfield","Old Trafford","Emirates","Camp Nou"],
+c:"Anfield",
+h:"Słynny stadion Liverpoolu."
+},
+
+{
+q:"Kto gra na Old Trafford?",
+a:["Manchester United","Liverpool","Arsenal","Chelsea"],
+c:"Manchester United",
+h:"Czerwone Diabły."
+},
+
+{
+q:"Na jakim stadionie gra Real Madryt?",
+a:["Santiago Bernabéu","Camp Nou","San Siro","Anfield"],
+c:"Santiago Bernabéu",
+h:"Stadion w Madrycie."
+}
+
+],
+
+countries: [
+
+{
+q:"Kto wygrał mundial 2022?",
+a:["Argentyna","Francja","Brazylia","Niemcy"],
+c:"Argentyna",
+h:"Messi został mistrzem świata."
+},
+
+{
+q:"Kto wygrał mundial 2018?",
+a:["Francja","Chorwacja","Belgia","Brazylia"],
+c:"Francja",
+h:"Pokonali Chorwację w finale."
+},
+
+{
+q:"Z jakiego kraju pochodzi Cristiano Ronaldo?",
+a:["Hiszpania","Portugalia","Brazylia","Włochy"],
+c:"Portugalia",
+h:"CR7 gra dla tej reprezentacji."
+}
+
+]
+
+};
+
+
+/* ==================================================
+   PYTANIA ŚREDNIE
+================================================== */
+
+const medium = {
+
+classic: [
+
+{
+q:"Kto zdobył Złotą Piłkę w 2023 roku?",
+a:["Lionel Messi","Erling Haaland","Kylian Mbappé","Kevin De Bruyne"],
+c:"Lionel Messi",
+h:"Była to jego ósma Złota Piłka."
+},
+
+{
+q:"Który klub wygrał Ligę Mistrzów w 2019?",
+a:["Liverpool","Tottenham","Barcelona","Ajax"],
+c:"Liverpool",
+h:"Finał odbył się w Madrycie."
+},
+
+{
+q:"Kto strzelił zwycięskiego gola w finale mundialu 2010?",
+a:["Xavi","Andrés Iniesta","David Villa","Fernando Torres"],
+c:"Andrés Iniesta",
+h:"Gol padł w dogrywce."
+},
+
+{
+q:"Który klub ma przydomek The Reds?",
+a:["Liverpool","Chelsea","Arsenal","Manchester City"],
+c:"Liverpool",
+h:"Ich stadion to Anfield."
+}
+
+],
+
+players: [
+
+{
+name:"Erling Haaland",
+q:"Kto to jest?",
+a:["Erling Haaland","Harry Kane","Salah","Saka"],
+c:"Erling Haaland",
+h:"Norweski napastnik."
+},
+
+{
+name:"Luka Modrić",
+q:"Kto to jest?",
+a:["Luka Modrić","Toni Kroos","Casemiro","Bellingham"],
+c:"Luka Modrić",
+h:"Chorwacki pomocnik."
+},
+
+{
+name:"Mohamed Salah",
+q:"Kto to jest?",
+a:["Mohamed Salah","Sadio Mané","Riyad Mahrez","Hakimi"],
+c:"Mohamed Salah",
+h:"Egipski skrzydłowy."
+},
+
+{
+name:"Kevin De Bruyne",
+q:"Kto to jest?",
+a:["Kevin De Bruyne","Eden Hazard","Courtois","Lukaku"],
+c:"Kevin De Bruyne",
+h:"Belgijski pomocnik."
+}
+
+],
+
+clubs: [
+
+{
+q:"Który klub gra na Allianz Arena?",
+a:["Bayern Monachium","Borussia Dortmund","RB Lipsk","Bayer Leverkusen"],
+c:"Bayern Monachium",
+h:"Jeden z największych klubów Niemiec."
+},
+
+{
+q:"Które dwa kluby grają na San Siro?",
+a:["Inter i Milan","Roma i Lazio","Juventus i Torino","Napoli i Roma"],
+c:"Inter i Milan",
+h:"Oba są z Mediolanu."
+},
+
+{
+q:"Który klub ma przydomek The Blues?",
+a:["Chelsea","Liverpool","Arsenal","Tottenham"],
+c:"Chelsea",
+h:"Londyński klub."
+}
+
+],
+
+countries: [
+
+{
+q:"Kto wygrał mundial w 2014 roku?",
+a:["Niemcy","Argentyna","Brazylia","Hiszpania"],
+c:"Niemcy",
+h:"Pokonali Argentynę 1:0."
+},
+
+{
+q:"Kto wygrał mundial w 2010 roku?",
+a:["Hiszpania","Holandia","Niemcy","Włochy"],
+c:"Hiszpania",
+h:"Iniesta strzelił gola w finale."
+},
+
+{
+q:"Kto zdobył mundial w 2006 roku?",
+a:["Włochy","Francja","Niemcy","Brazylia"],
+c:"Włochy",
+h:"Pokonali Francję w rzutach karnych."
+}
+
+]
+
+};
+
+
+/* ==================================================
+   PYTANIA TRUDNE
+================================================== */
+
+const hard = {
+
+classic: [
+
+{
+q:"Kto zdobył pierwszą Złotą Piłkę w historii?",
+a:["Stanley Matthews","Pelé","Alfredo Di Stéfano","Johan Cruyff"],
+c:"Stanley Matthews",
+h:"Zdobył ją w 1956 roku."
+},
+
+{
+q:"Który klub wygrał pierwszy Puchar Europy?",
+a:["Real Madryt","AC Milan","Benfica","Barcelona"],
+c:"Real Madryt",
+h:"Pierwsza edycja odbyła się w sezonie 1955/56."
+},
+
+{
+q:"Kto zdobył najwięcej bramek w jednym sezonie Premier League?",
+a:["Erling Haaland","Alan Shearer","Harry Kane","Mohamed Salah"],
+c:"Erling Haaland",
+h:"Dokonał tego w sezonie 2022/23."
+},
+
+{
+q:"Który zawodnik zdobył Złotą Piłkę jako pierwszy obrońca?",
+a:["Fabio Cannavaro","Franz Beckenbauer","Matthias Sammer","Bobby Moore"],
+c:"Fabio Cannavaro",
+h:"Zdobył ją w 2006 roku."
+}
+
+],
+
+players: [
+
+{
+name:"Zinedine Zidane",
+q:"Kto to jest?",
+a:["Zinedine Zidane","Thierry Henry","Patrick Vieira","Eric Cantona"],
+c:"Zinedine Zidane",
+h:"Zdobył Złotą Piłkę w 1998 roku."
+},
+
+{
+name:"Ronaldinho",
+q:"Kto to jest?",
+a:["Ronaldinho","Rivaldo","Kaká","Romário"],
+c:"Ronaldinho",
+h:"Zdobył Złotą Piłkę w 2005 roku."
+},
+
+{
+name:"Andrés Iniesta",
+q:"Kto to jest?",
+a:["Andrés Iniesta","Xavi","Busquets","David Silva"],
+c:"Andrés Iniesta",
+h:"Strzelił gola w finale mundialu 2010."
+},
+
+{
+name:"Thierry Henry",
+q:"Kto to jest?",
+a:["Thierry Henry","Didier Drogba","Samuel Eto'o","David Trezeguet"],
+c:"Thierry Henry",
+h:"Legenda Arsenalu."
+}
+
+],
+
+clubs: [
+
+{
+q:"Który klub zdobył najwięcej Pucharów Europy do 1990 roku?",
+a:["Real Madryt","AC Milan","Liverpool","Bayern"],
+c:"Real Madryt",
+h:"Hiszpański gigant."
+},
+
+{
+q:"W którym mieście znajduje się stadion Maracanã?",
+a:["Rio de Janeiro","São Paulo","Buenos Aires","Brasília"],
+c:"Rio de Janeiro",
+h:"Słynny brazylijski stadion."
+},
+
+{
+q:"Który klub wygrał Ligę Mistrzów w sezonie 1992/93?",
+a:["Olympique Marsylia","AC Milan","Barcelona","Juventus"],
+c:"Olympique Marsylia",
+h:"To jedyny francuski zwycięzca."
+}
+
+],
+
+countries: [
+
+{
+q:"Który kraj wygrał pierwszy mundial w 1930 roku?",
+a:["Urugwaj","Argentyna","Brazylia","Włochy"],
+c:"Urugwaj",
+h:"Turniej odbył się w Urugwaju."
+},
+
+{
+q:"Który kraj zdobył mundial w 1954 roku?",
+a:["RFN","Węgry","Brazylia","Urugwaj"],
+c:"RFN",
+h:"To słynny „Cud w Bernie”."
+},
+
+{
+q:"Który kraj był mistrzem świata w 1966 roku?",
+a:["Anglia","Niemcy","Brazylia","Włochy"],
+c:"Anglia",
+h:"To jedyny mundial wygrany przez Anglię."
+}
+
+]
+
+};
+
+
+/* ==================================================
+   ZMIENNE GRY
+================================================== */
+
+let category = "";
+let questions = [];
+let current = 0;
+let score = 0;
+let coins = 0;
+let lives = 3;
+let combo = 0;
+let time = 15;
+let timer = null;
+let answered = false;
+let hintUsed = false;
+let fiftyUsed = false;
+
+
+/* ==================================================
+   WYBÓR TRUDNOŚCI
+================================================== */
+
+function chooseDifficulty(type) {
+
+category = type;
+
+document.getElementById("menu")
+.classList.add("hidden");
+
+document.getElementById("difficulty")
+.classList.remove("hidden");
+
+let names = {
+classic:"⚽ Klasyczny Quiz",
+players:"👤 Zgadnij Piłkarza",
+clubs:"🏟️ Kluby i Stadiony",
+countries:"🌍 Reprezentacje"
+};
+
+document.getElementById("difficultyTitle")
+.innerText = names[type];
+
+}
+
+
+/* ==================================================
+   START
+================================================== */
+
+function startGame(level) {
+
+if(level === "easy") {
+questions = easy[category].slice();
+time = 15;
+}
+
+if(level === "medium") {
+questions = medium[category].slice();
+time = 12;
+}
+
+if(level === "hard") {
+questions = hard[category].slice();
+time = 8;
+}
+
+current = 0;
+score = 0;
+coins = 0;
+lives = 3;
+combo = 0;
+
+document.getElementById("difficulty")
+.classList.add("hidden");
+
+document.getElementById("game")
+.classList.remove("hidden");
+
+showQuestion();
+
+}
+
+
+/* ==================================================
+   ZDJĘCIE PIŁKARZA
+================================================== */
+
+async function loadPlayerImage(name) {
+
+const picture =
+document.getElementById("picture");
+
+picture.innerHTML =
+"<p class='small'>📸 Ładowanie zdjęcia...</p>";
+
+try {
+
+let url =
+"https://pl.wikipedia.org/api/rest_v1/page/summary/"
++ encodeURIComponent(name);
+
+let response =
+await fetch(url);
+
+let data =
+await response.json();
+
+if(data.thumbnail && data.thumbnail.source) {
+
+picture.innerHTML = "";
+
+let img =
+document.createElement("img");
+
+img.src =
+data.thumbnail.source;
+
+img.className =
+"player-image";
+
+picture.appendChild(img);
+
+}
+else {
+
+picture.innerHTML =
+"<p class='small'>📸 Zdjęcie niedostępne</p>";
+
+}
+
+}
+catch(error) {
+
+picture.innerHTML =
+"<p class='small'>📸 Nie udało się pobrać zdjęcia</p>";
+
+}
+
+}
+
+
+/* ==================================================
+   PYTANIE
+================================================== */
+
+function showQuestion() {
+
+clearInterval(timer);
+
+answered = false;
+hintUsed = false;
+fiftyUsed = false;
+
+document.getElementById("message").innerText = "";
+
+document.getElementById("hint")
+.classList.add("hidden");
+
+document.getElementById("next")
+.classList.add("hidden");
+
+document.getElementById("picture").innerHTML = "";
+
+const q = questions[current];
+
+document.getElementById("question")
+.innerText = q.q;
+
+
+/* ZDJĘCIE */
+
+if(category === "players") {
+
+loadPlayerImage(q.name);
+
+}
+
+
+/* ODPOWIEDZI */
+
+const box =
+document.getElementById("answers");
+
+box.innerHTML = "";
+
+let list = q.a.slice();
+
+list.sort(() => Math.random() - 0.5);
+
+list.forEach(function(answer) {
+
+let button =
+document.createElement("button");
+
+button.className = "answer";
+
+button.innerText = answer;
+
+button.onclick = function() {
+
+checkAnswer(button, answer);
+
+};
+
+box.appendChild(button);
+
+});
+
+
+/* POSTĘP */
+
+document.getElementById("progress")
+.style.width =
+((current / questions.length) * 100) + "%";
+
+
+/* TIMER */
+
+let maxTime = 15;
+
+if(time === 12) maxTime = 12;
+
+if(time === 8) maxTime = 8;
+
+let remaining = maxTime;
+
+document.getElementById("timer")
+.innerText =
+"⏱️ " + remaining;
+
+timer = setInterval(function() {
+
+remaining--;
+
+document.getElementById("timer")
+.innerText =
+"⏱️ " + remaining;
+
+if(remaining <= 0) {
+
+clearInterval(timer);
+
+timeOut();
+
+}
+
+},1000);
+
+updateStats();
+
+}
+
+
+/* ==================================================
+   ODPOWIEDŹ
+================================================== */
+
+function checkAnswer(button, answer) {
+
+if(answered) return;
+
+answered = true;
+
+clearInterval(timer);
+
+const correct =
+questions[current].c;
+
+document.querySelectorAll(".answer")
+.forEach(function(btn) {
+
+btn.disabled = true;
+
+if(btn.innerText === correct) {
+btn.classList.add("correct");
+}
+
+});
+
+
+if(answer === correct) {
+
+button.classList.add("correct");
+
+combo++;
+
+let points = 1;
+
+if(category === "players") {
+points = 2;
+}
+
+if(combo >= 3) {
+points++;
+}
+
+if(combo >= 5) {
+points++;
+}
+
+score += points;
+
+coins += points;
+
+document.getElementById("message")
+.innerText =
+"✅ DOBRZE! +" + points + " pkt";
+
+}
+else {
+
+button.classList.add("wrong");
+
+lives--;
+
+combo = 0;
+
+document.getElementById("message")
+.innerText =
+"❌ ŹLE! Poprawna odpowiedź: "
++ correct;
+
+}
+
+updateStats();
+
+if(lives <= 0) {
+
+setTimeout(endGame,800);
+
+return;
+
+}
+
+document.getElementById("next")
+.classList.remove("hidden");
+
+}
+
+
+/* ==================================================
+   CZAS
+================================================== */
+
+function timeOut() {
+
+if(answered) return;
+
+answered = true;
+
+lives--;
+
+combo = 0;
+
+const correct =
+questions[current].c;
+
+document.querySelectorAll(".answer")
+.forEach(function(btn) {
+
+btn.disabled = true;
+
+if(btn.innerText === correct) {
+btn.classList.add("correct");
+}
+
+});
+
+document.getElementById("message")
+.innerText =
+"⏰ CZAS! Poprawna odpowiedź: "
++ correct;
+
+updateStats();
+
+if(lives <= 0) {
+
+setTimeout(endGame,800);
+
+return;
+
+}
+
+document.getElementById("next")
+.classList.remove("hidden");
+
+}
+
+
+/* ==================================================
+   NASTĘPNE
+================================================== */
+
+function nextQuestion() {
+
+current++;
+
+if(current >= questions.length) {
+
+endGame();
+
+}
+else {
+
+showQuestion();
+
+}
+
+}
+
+
+/* ==================================================
+   50/50
+================================================== */
+
+function fiftyFifty() {
+
+if(fiftyUsed || answered) return;
+
+if(coins < 3) {
+
+document.getElementById("message")
+.innerText =
+"🪙 Potrzebujesz 3 monet!";
+
+return;
+
+}
+
+coins -= 3;
+
+fiftyUsed = true;
+
+const correct =
+questions[current].c;
+
+let wrong = [];
+
+document.querySelectorAll(".answer")
+.forEach(function(btn) {
+
+if(btn.innerText !== correct) {
+wrong.push(btn);
+}
+
+});
+
+wrong.sort(() => Math.random() - 0.5);
+
+wrong.slice(0,2)
+.forEach(function(btn) {
+
+btn.style.visibility = "hidden";
+
+});
+
+updateStats();
+
+}
+
+
+/* ==================================================
+   PODPOWIEDŹ
+================================================== */
+
+function showHint() {
+
+if(hintUsed || answered) return;
+
+if(coins < 2) {
+
+document.getElementById("message")
+.innerText =
+"🪙 Potrzebujesz 2 monet!";
+
+return;
+
+}
+
+coins -= 2;
+
+hintUsed = true;
+
+document.getElementById("hint")
+.innerText =
+"💡 " + questions[current].h;
+
+document.getElementById("hint")
+.classList.remove("hidden");
+
+updateStats();
+
+}
+
+
+/* ==================================================
+   STATYSTYKI
+================================================== */
+
+function updateStats() {
+
+document.getElementById("lives").innerText = lives;
+document.getElementById("coins").innerText = coins;
+document.getElementById("combo").innerText = combo;
+document.getElementById("score").innerText = score;
+
+}
+
+
+/* ==================================================
+   KONIEC
+================================================== */
+
+function endGame() {
+
+clearInterval(timer);
+
+document.getElementById("game")
+.classList.add("hidden");
+
+document.getElementById("end")
+.classList.remove("hidden");
+
+document.getElementById("finalScore")
+.innerText = score;
+
+document.getElementById("finalCoins")
+.innerText = coins;
+
+let record =
+Number(localStorage.getItem("footballRecord") || 0);
+
+if(score > record) {
+
+record = score;
+
+localStorage.setItem(
+"footballRecord",
+record
+);
+
+}
+
+document.getElementById("finalRecord")
+.innerText = record;
+
+}
+
+
+/* ==================================================
+   MENU
+================================================== */
+
+function backToMenu() {
+
+clearInterval(timer);
+
+document.getElementById("difficulty")
+.classList.add("hidden");
+
+document.getElementById("game")
+.classList.add("hidden");
+
+document.getElementById("end")
+.classList.add("hidden");
+
+document.getElementById("menu")
+.classList.remove("hidden");
+
+loadRecord();
+
+}
+
+
+/* ==================================================
+   REKORD
+================================================== */
+
+function loadRecord() {
+
+document.getElementById("record")
+.innerText =
+localStorage.getItem("footballRecord") || 0;
+
+}
+
+loadRecord();
+
+</script>
+
+</body>
+</html>
